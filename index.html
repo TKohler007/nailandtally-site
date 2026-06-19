@@ -1,0 +1,181 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nail &amp; Tally — Stop losing tools.</title>
+<meta name="description" content="Nail &amp; Tally tracks every tool across every job site — no barcodes, no tags, just your phone. Built for construction, HVAC, and plumbing crews. $99/month, no contract.">
+<meta name="robots" content="index">
+<style>
+:root{
+  --navy:#1F3A5F;      /* Blueprint Navy */
+  --green:#10B981;     /* Locator Green */
+  --ink:#111827;       /* Workwear Charcoal */
+  --muted:#5b6577;
+  --line:#e3e7ee;
+  --bg:#F5F5F0;        /* Concrete White */
+  --card:#ffffff;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,Segoe UI,Inter,Roboto,Helvetica,Arial,sans-serif;line-height:1.65;font-size:17px}
+.wrap{max-width:980px;margin:0 auto;padding:0 22px}
+
+/* ---- Header (matches legal site "Stack" header) ---- */
+header.site{background:var(--navy);color:#fff;padding:18px 0}
+header.site .wrap{display:flex;align-items:center;gap:14px}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;color:#fff}
+.stack{position:relative;width:30px;height:24px}
+.stack span{position:absolute;left:0;height:5px;border-radius:1px;background:#fff;opacity:.92}
+.stack span:nth-child(1){top:0;width:14px}
+.stack span:nth-child(2){top:9px;width:22px;opacity:.78}
+.stack span:nth-child(3){top:18px;width:30px;opacity:.6}
+.stack .pin{position:absolute;top:-7px;left:14px;width:10px;height:10px;border-radius:50% 50% 50% 0;background:var(--green);transform:rotate(-45deg)}
+.brand{font-weight:700;font-size:19px;letter-spacing:.2px}
+.brand .amp{color:var(--green)}
+nav.site{margin-left:auto}
+nav.site a{color:#fff;text-decoration:none;font-size:15px;font-weight:600;background:rgba(255,255,255,.12);padding:8px 15px;border-radius:8px}
+nav.site a:hover{background:rgba(255,255,255,.22)}
+
+/* ---- Hero ---- */
+.hero{background:var(--navy);color:#fff;padding:54px 0 64px}
+.hero h1{font-size:48px;line-height:1.08;margin:0 0 14px;letter-spacing:-1px}
+.hero .lead{font-size:21px;color:#dbe3f0;max-width:620px;margin:0 0 10px}
+.hero .support{font-size:17px;color:#aebbd0;max-width:620px;margin:0 0 30px}
+.hero .support b{color:#fff}
+.btn{display:inline-block;background:var(--green);color:#062d22;text-decoration:none;padding:15px 26px;border-radius:10px;font-weight:700;font-size:17px;border:none;cursor:pointer}
+.btn:hover{background:#0ea372}
+.btn-sub{display:block;color:#aebbd0;font-size:15px;margin-top:12px}
+
+/* ---- Sections ---- */
+section{padding:52px 0}
+section h2{color:var(--navy);font-size:28px;margin:0 0 8px;letter-spacing:-.4px}
+section .sub{color:var(--muted);font-size:17px;max-width:680px;margin:0 0 26px}
+.alt{background:#fff}
+
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:22px 24px}
+.alt .card{background:var(--bg)}
+.card h3{margin:0 0 6px;color:var(--navy);font-size:18px}
+.card p{margin:0;color:var(--muted);font-size:15.5px}
+
+/* ---- Steps ---- */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:8px}
+.step{padding:8px 0}
+.step .n{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:var(--green);color:#062d22;font-weight:800;margin-bottom:10px}
+.step h3{margin:0 0 4px;color:var(--navy);font-size:18px}
+.step p{margin:0;color:var(--muted);font-size:15.5px}
+
+/* ---- Roadmap ---- */
+.road li{margin:10px 0;font-size:16.5px}
+.tag{display:inline-block;background:#eef3fe;color:var(--navy);border:1px solid #d4e0fb;border-radius:999px;font-size:12.5px;font-weight:700;padding:2px 10px;margin-left:6px;vertical-align:middle}
+
+/* ---- Final CTA ---- */
+.cta-final{background:var(--navy);color:#fff;text-align:center}
+.cta-final h2{color:#fff}
+.cta-final .sub{color:#dbe3f0;margin:0 auto 26px}
+.cta-final .email{display:block;color:#aebbd0;font-size:15px;margin-top:14px}
+.cta-final .email a{color:#fff}
+
+/* ---- Footer ---- */
+footer.site{background:#111c2e;color:#9aa6bb;font-size:13.5px;padding:34px 0 50px}
+footer.site .top{font-weight:700;color:#fff;font-size:15px;margin-bottom:6px}
+footer.site .links{margin-top:10px}
+footer.site .soon{color:#6b7488;cursor:default}
+footer.site .sep{color:#3a455c;margin:0 8px}
+footer.site a{color:#9aa6bb;text-decoration:none}
+footer.site a:hover{color:#fff}
+.tm{font-size:.62em;vertical-align:super}
+
+@media(max-width:720px){
+  .hero h1{font-size:35px}
+  .hero .lead{font-size:19px}
+  .cards{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
+  section{padding:40px 0}
+  section h2{font-size:24px}
+}
+</style></head><body>
+
+<!-- HEADER -->
+<header class="site"><div class="wrap">
+  <a class="logo" href="/">
+    <span class="stack"><span></span><span></span><span></span><span class="pin"></span></span>
+    <span class="brand">Nail <span class="amp">&amp;</span> Tally<span class="tm">&trade;</span></span>
+  </a>
+  <nav class="site"><a href="mailto:info@nailandtally.com?subject=Beta%20access%20request">Request beta access</a></nav>
+</div></header>
+
+<!-- HERO -->
+<section class="hero"><div class="wrap">
+  <h1>Stop losing tools.</h1>
+  <p class="lead">Nail &amp; Tally tracks every tool across every job site — no barcodes, no tags, just your phone.</p>
+  <p class="support">Built for construction, HVAC, and plumbing crews. <b>Flat $99/month. No contract.</b></p>
+  <a class="btn" href="mailto:info@nailandtally.com?subject=Beta%20access%20request">Request beta access</a>
+  <span class="btn-sub">An early pilot is underway. Get in before launch.</span>
+</div></section>
+
+<!-- WHAT IT DOES -->
+<section><div class="wrap">
+  <h2>Your whole inventory, in your pocket</h2>
+  <p class="sub">A crew's tools and materials move constantly — truck to warehouse to job site to the next job site. Nail &amp; Tally keeps the count straight without slowing anyone down.</p>
+  <div class="cards">
+    <div class="card"><h3>Track across every location</h3><p>Job site, warehouse, yard, or truck — always know where each tool is.</p></div>
+    <div class="card"><h3>No barcodes, no tags, no scanners</h3><p>Log and find tools right from your phone. No hardware to buy or maintain.</p></div>
+    <div class="card"><h3>Photos on every item</h3><p>No guessing which drill or which fitting — see it before you go looking.</p></div>
+    <div class="card"><h3>Your data stays yours</h3><p>Each company's inventory is private and kept separate.</p></div>
+  </div>
+</div></section>
+
+<!-- WHO IT'S FOR -->
+<section class="alt"><div class="wrap">
+  <h2>Made for the trades</h2>
+  <p class="sub">For owners and crews who are tired of the end-of-day "where's the impact driver" scramble.</p>
+  <div class="cards">
+    <div class="card"><h3>Construction crews</h3><p>Running tools across multiple active sites.</p></div>
+    <div class="card"><h3>HVAC shops</h3><p>Moving gear between the warehouse, the truck, and the customer.</p></div>
+    <div class="card"><h3>Plumbing crews</h3><p>Who need to know what's on which van before they roll.</p></div>
+    <div class="card"><h3>One flat price</h3><p>$99/month, no contract.</p></div>
+  </div>
+</div></section>
+
+<!-- HOW IT WORKS -->
+<section><div class="wrap">
+  <h2>No tags. No scanners. Just your phone.</h2>
+  <p class="sub">Most tool-tracking systems die the same way: nobody scans the tags. Nail &amp; Tally skips the hardware entirely — so the crew actually keeps it up to date.</p>
+  <div class="steps">
+    <div class="step"><span class="n">1</span><h3>Add a tool</h3><p>Type it in, or pick from the list.</p></div>
+    <div class="step"><span class="n">2</span><h3>Snap a photo</h3><p>So everyone knows exactly which one.</p></div>
+    <div class="step"><span class="n">3</span><h3>Assign a location</h3><p>Done. Updating the count takes seconds.</p></div>
+  </div>
+</div></section>
+
+<!-- ROADMAP -->
+<section class="alt"><div class="wrap">
+  <h2>On the roadmap</h2>
+  <p class="sub">We're building toward a tool you open less, not more.</p>
+  <ul class="road">
+    <li>Photo-assisted logging — point your phone and let the app help identify and count what it sees. <span class="tag">In development</span></li>
+    <li>iOS and Android apps in the app stores. <span class="tag">Coming soon</span></li>
+  </ul>
+</div></section>
+
+<!-- FINAL CTA -->
+<section class="cta-final"><div class="wrap">
+  <h2>Want in early?</h2>
+  <p class="sub">We're onboarding our first pilot crews now. Request access or get a note when we launch.</p>
+  <a class="btn" href="mailto:info@nailandtally.com?subject=Beta%20access%20request">Request beta access</a>
+  <span class="email">Or email us: <a href="mailto:info@nailandtally.com">info@nailandtally.com</a></span>
+</div></section>
+
+<!-- FOOTER -->
+<footer class="site"><div class="wrap">
+  <div class="top">Nail &amp; Tally<span class="tm">&trade;</span> — tool &amp; material inventory for the trades.</div>
+  <div>&copy; 2026 Nail and Tally LLC. All rights reserved.</div>
+  <div class="links">
+    <span class="soon" title="Coming soon">Privacy Policy — coming soon</span>
+    <span class="sep">·</span>
+    <span class="soon" title="Coming soon">Terms of Service — coming soon</span>
+    <span class="sep">·</span>
+    <a href="mailto:info@nailandtally.com">info@nailandtally.com</a>
+  </div>
+</div></footer>
+
+</body></html>
