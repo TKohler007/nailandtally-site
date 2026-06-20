@@ -4,6 +4,8 @@
 <meta name="description" content="Nail &amp; Tally tracks every tool across every job site — no barcodes, no tags, just your phone. Built for construction, HVAC, and plumbing crews. $99/month, no contract.">
 <meta name="robots" content="index">
 <meta name="theme-color" content="#111827">
+<!-- Favicon: revised Option A emblem (hexagon bolt-head + four tally bars + nail as the 5th stroke), inlined as a data-URI SVG so the site stays self-contained -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='112' fill='%231F3A5F'/%3E%3Cg transform='translate(82,82) scale(1.45)'%3E%3Cpolygon points='16,120 68,30 172,30 224,120 172,210 68,210' fill='%2316304F'/%3E%3Cpolygon points='34,120 77,46 163,46 206,120 163,194 77,194' fill='none' stroke='%230F2540' stroke-width='6'/%3E%3Cg fill='%232E8A52'%3E%3Crect x='86' y='86' width='7' height='68' rx='3.5'/%3E%3Crect x='100' y='86' width='7' height='68' rx='3.5'/%3E%3Crect x='114' y='86' width='7' height='68' rx='3.5'/%3E%3Crect x='128' y='86' width='7' height='68' rx='3.5'/%3E%3C/g%3E%3Cg transform='rotate(48 120 120)'%3E%3Crect x='103' y='58' width='34' height='13' rx='2' fill='%23F5F5F0'/%3E%3Cpath d='M111,71 L129,71 L125,170 L115,170 Z' fill='%23F5F5F0'/%3E%3Cpath d='M115,170 L125,170 L120,185 Z' fill='%23F5F5F0'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
@@ -15,13 +17,14 @@
   --navy-ink:#0c121d;    /* footer — near-black charcoal */
   --charcoal:#15191f;    /* Workwear charcoal band */
   --charcoal-2:#1d222b;  /* charcoal card on dark */
-  --green:#10B981;       /* Locator Green */
-  --green-deep:#0ea372;
+  --green:#15512F;       /* Forest Green (revised Option A — darker forest; was #1E7A46) */
+  --green-deep:#0F3D23;  /* darker forest, for hovers/eyebrows on light */
+  --green-ondark:#2E8A52;/* nail + "&" + green on navy/charcoal (on-dark variant) */
   --ink:#111827;         /* Workwear Charcoal */
   --muted:#5b6577;
   --muted-2:#7b8595;
-  --line:#e3e7ee;        /* hairline */
-  --bg:#F5F5F0;          /* Concrete White */
+  --line:#D7DBE2;        /* hairline (was #e3e7ee) */
+  --bg:#E9EBEE;          /* Steel Grey (was #F5F5F0 Concrete White) */
   --card:#ffffff;
   --red:#DC2626;         /* status: missing */
   --amber:#F59E0B;       /* status: low */
@@ -46,7 +49,7 @@ img,svg{display:block;max-width:100%}
 h1,h2,h3{color:var(--navy);font-family:var(--font-display);font-weight:700;letter-spacing:-.6px;margin:0}
 .eyebrow{display:inline-block;font-size:13px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:var(--green-deep);margin:0 0 14px}
 .hero .eyebrow{font-size:15px}
-.eyebrow.light{color:#10B981}
+.eyebrow.light{color:var(--green-ondark)}
 
 /* ===== Header (sticky) ===== */
 header.site{
@@ -59,12 +62,12 @@ header.site .wrap{display:flex;align-items:center;gap:14px;height:68px}
 .logo{display:flex;align-items:center;gap:12px;text-decoration:none;color:#fff;min-width:0}
 .logo svg{width:36px;height:auto;flex:none;filter:drop-shadow(0 1px 1px rgba(0,0,0,.55))}
 .brand{font-family:var(--font-display);font-weight:700;font-size:24px;letter-spacing:-.3px;white-space:nowrap;text-shadow:0 1px 1.5px rgba(0,0,0,.55),0 0 1px rgba(0,0,0,.4)}
-.brand .amp{color:var(--green)}
+.brand .amp{color:var(--green-ondark)}
 .brand .tm{font-size:.5em;vertical-align:super;font-weight:600;letter-spacing:0}
 nav.site{margin-left:auto}
 .btn{
   display:inline-flex;align-items:center;justify-content:center;gap:8px;
-  background:var(--green);color:#06241b;text-decoration:none;
+  background:var(--green);color:#fff;text-decoration:none;
   padding:13px 22px;border-radius:10px;font-weight:700;font-size:15px;
   border:none;cursor:pointer;font-family:inherit;
   box-shadow:0 1px 2px rgba(6,36,27,.15);transition:transform .12s ease,background .15s ease;
@@ -92,7 +95,7 @@ nav.site{margin-left:auto}
 }
 .hero::after{ /* reverse logo watermark, very low opacity */
   content:"";position:absolute;right:-60px;top:-40px;width:520px;height:520px;
-  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 200'><g transform='translate(12,64)'><rect x='0' y='0' width='80' height='33' rx='6' fill='%23ffffff'/><rect x='0' y='45' width='148' height='33' rx='6' fill='%23ffffff'/><rect x='0' y='90' width='216' height='33' rx='6' fill='%23ffffff'/><path d='M80,0 L65.1,-21.9 A18,18 0 1,1 94.9,-21.9 Z M73,-32 A7,7 0 1,1 87,-32 A7,7 0 1,1 73,-32 Z' fill='%2310B981' fill-rule='evenodd'/></g></svg>");
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 240'><polygon points='16,120 68,30 172,30 224,120 172,210 68,210' fill='none' stroke='%23ffffff' stroke-width='7'/><g fill='%232E8A52'><rect x='86' y='86' width='7' height='68' rx='3.5'/><rect x='100' y='86' width='7' height='68' rx='3.5'/><rect x='114' y='86' width='7' height='68' rx='3.5'/><rect x='128' y='86' width='7' height='68' rx='3.5'/></g><g transform='rotate(48 120 120)'><rect x='103' y='58' width='34' height='13' rx='2' fill='%23ffffff'/><path d='M111,71 L129,71 L125,170 L115,170 Z' fill='%23ffffff'/><path d='M115,170 L125,170 L120,185 Z' fill='%23ffffff'/></g></svg>");
   background-repeat:no-repeat;background-size:contain;opacity:.05;pointer-events:none;
 }
 .hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;padding:84px 24px 92px}
@@ -133,7 +136,7 @@ nav.site{margin-left:auto}
 .iname{font-size:12.5px;font-weight:700;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:-.2px}
 .iloc{font-size:11px;color:var(--muted);margin-top:1px;display:flex;align-items:center;gap:5px}
 .dot{width:8px;height:8px;border-radius:50%;flex:none}
-.dot.g{background:var(--green);box-shadow:0 0 0 3px rgba(16,185,129,.16)}
+.dot.g{background:var(--green);box-shadow:0 0 0 3px rgba(21,81,47,.16)}
 .dot.r{background:var(--red);box-shadow:0 0 0 3px rgba(220,38,38,.16)}
 .dot.a{background:var(--amber);box-shadow:0 0 0 3px rgba(245,158,11,.16)}
 .iloc .lab.miss{color:var(--red);font-weight:700}
@@ -143,7 +146,7 @@ nav.site{margin-left:auto}
 .tab svg{width:19px;height:19px}
 .tab.on{color:var(--navy)}
 .tab.add{position:relative;top:-2px}
-.tab.add .badge{width:38px;height:38px;border-radius:12px;background:var(--green);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 10px rgba(16,185,129,.4)}
+.tab.add .badge{width:38px;height:38px;border-radius:12px;background:var(--green);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 10px rgba(21,81,47,.4)}
 .tab.add .badge svg{width:20px;height:20px}
 .tab.add span{color:var(--green-deep);font-weight:700}
 
@@ -152,7 +155,7 @@ section{padding:92px 0}
 section.tight{padding:84px 0}
 .alt{background:#fff}
 .navy-band{background:var(--navy);color:#fff;position:relative;overflow:hidden}
-.navy-band .eyebrow{color:#10B981}
+.navy-band .eyebrow{color:var(--green-ondark)}
 .navy-band h2{color:#fff}
 /* charcoal/near-black band — adds depth against the navy/green/concrete */
 .charcoal-band{background:var(--charcoal);color:#fff;position:relative;overflow:hidden}
@@ -161,7 +164,7 @@ section.tight{padding:84px 0}
                    linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
   background-size:34px 34px;mask-image:radial-gradient(ellipse 90% 80% at 50% 0%,#000 30%,transparent 78%);
   -webkit-mask-image:radial-gradient(ellipse 90% 80% at 50% 0%,#000 30%,transparent 78%);pointer-events:none}
-.charcoal-band .eyebrow{color:#10B981}
+.charcoal-band .eyebrow{color:var(--green-ondark)}
 .charcoal-band h2{color:#fff}
 .charcoal-band .sub{color:#b9c0cb}
 .sec-head{max-width:640px;margin:0 0 48px}
@@ -182,7 +185,7 @@ h2{font-size:40px;line-height:1.1;letter-spacing:-1.1px}
 .card:hover{transform:translateY(-2px);box-shadow:0 2px 4px rgba(31,58,95,.07),0 16px 40px rgba(31,58,95,.12)}
 .icon-tile{width:48px;height:48px;border-radius:13px;display:flex;align-items:center;justify-content:center;margin-bottom:18px}
 .icon-tile.navy{background:rgba(31,58,95,.08)}
-.icon-tile.green{background:rgba(16,185,129,.12)}
+.icon-tile.green{background:rgba(21,81,47,.12)}
 .icon-tile svg{width:26px;height:26px}
 .card h3{font-size:21px;margin:0 0 8px;letter-spacing:-.4px}
 .card p{margin:0;color:var(--muted);font-size:16px;line-height:1.55}
@@ -208,7 +211,7 @@ h2{font-size:40px;line-height:1.1;letter-spacing:-1.1px}
 .detail-body{padding:14px 15px 17px}
 .detail-body .dn{font-size:16px;font-weight:800;color:var(--navy);letter-spacing:-.3px}
 .pill{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:5px 11px;border-radius:999px;margin-top:9px}
-.pill.stock{background:rgba(16,185,129,.12);color:var(--green-deep)}
+.pill.stock{background:rgba(21,81,47,.12);color:var(--green-deep)}
 .kv{display:flex;justify-content:space-between;font-size:12.5px;padding:10px 0;border-top:1px solid var(--line)}
 .kv:first-of-type{margin-top:13px}
 .kv .k{color:var(--muted)}
@@ -232,14 +235,14 @@ h2{font-size:40px;line-height:1.1;letter-spacing:-1.1px}
 .loc-pick .o.sel{background:var(--navy);color:#fff;border-color:var(--navy)}
 .snap{display:flex;align-items:center;justify-content:center;gap:8px;background:rgba(31,58,95,.06);border:1.5px dashed #c3cee0;border-radius:10px;padding:13px;color:var(--navy);font-size:13px;font-weight:700;margin-top:4px}
 .snap svg{width:17px;height:17px}
-.save-btn{margin-top:14px;background:var(--green);color:#06241b;text-align:center;padding:12px;border-radius:10px;font-size:13.5px;font-weight:800;box-shadow:0 4px 10px rgba(16,185,129,.3)}
+.save-btn{margin-top:14px;background:var(--green);color:#fff;text-align:center;padding:12px;border-radius:10px;font-size:13.5px;font-weight:800;box-shadow:0 4px 10px rgba(21,81,47,.3)}
 
 /* ===== Steps ===== */
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
 .step{background:#fff;border-radius:16px;padding:30px;box-shadow:var(--shadow-sm);border:1px solid rgba(227,231,238,.7);position:relative}
 .alt .step{background:var(--bg)}
 .step .top{display:flex;align-items:center;gap:13px;margin-bottom:14px}
-.step .n{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:var(--green);color:#06241b;font-weight:800;font-size:17px;flex:none}
+.step .n{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:var(--green);color:#fff;font-weight:800;font-size:17px;flex:none}
 .step .si{width:40px;height:40px;border-radius:11px;background:rgba(31,58,95,.07);display:flex;align-items:center;justify-content:center;margin-left:auto}
 .step .si svg{width:22px;height:22px}
 .step h3{font-size:19px;margin:0 0 6px;letter-spacing:-.3px}
@@ -247,7 +250,7 @@ h2{font-size:40px;line-height:1.1;letter-spacing:-1.1px}
 
 /* ===== Trust strip ===== */
 .trust-strip{display:flex;align-items:center;gap:18px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:26px 30px;margin-top:8px}
-.trust-strip .ts-icon{width:52px;height:52px;border-radius:14px;background:rgba(16,185,129,.16);display:flex;align-items:center;justify-content:center;flex:none}
+.trust-strip .ts-icon{width:52px;height:52px;border-radius:14px;background:rgba(46,138,82,.18);display:flex;align-items:center;justify-content:center;flex:none}
 .trust-strip .ts-icon svg{width:28px;height:28px}
 .trust-strip h3{color:#fff;font-size:21px;margin:0 0 4px;letter-spacing:-.4px}
 .trust-strip p{color:#c2cde0;margin:0;font-size:16px}
@@ -276,7 +279,7 @@ footer.site{background:var(--navy-ink);color:#9aa6bb;font-size:14px;padding:48px
 footer.site .f-top{display:flex;align-items:center;gap:11px;margin-bottom:14px}
 footer.site .f-top svg{width:26px;height:auto}
 footer.site .f-brand{font-family:var(--font-display);font-weight:700;color:#fff;font-size:18px;letter-spacing:-.3px}
-footer.site .f-brand .amp{color:var(--green)}
+footer.site .f-brand .amp{color:var(--green-ondark)}
 footer.site .f-brand .tm{font-size:.5em;vertical-align:super;font-weight:600}
 footer.site .tagline{color:#aab4c6;max-width:48ch;margin:0 0 22px;font-size:18px;font-weight:500;line-height:1.5}
 footer.site .legal{color:#6b7488;font-size:13px;margin-bottom:14px}
@@ -333,12 +336,21 @@ footer.site a:hover{color:#fff;border-color:rgba(255,255,255,.3)}
 <!-- ============ HEADER ============ -->
 <header class="site"><div class="wrap">
   <a class="logo" href="/" aria-label="Nail and Tally home">
-    <svg viewBox="0 0 140 120" aria-hidden="true"><g transform="translate(6,42)">
-      <rect x="0" y="0" width="46" height="20" rx="4" fill="#fff" stroke="#1a1d23" stroke-width="2.2"/>
-      <rect x="0" y="28" width="86" height="20" rx="4" fill="#fff" stroke="#1a1d23" stroke-width="2.2"/>
-      <rect x="0" y="56" width="125" height="20" rx="4" fill="#fff" stroke="#1a1d23" stroke-width="2.2"/>
-      <path d="M46,0 L37.4,-13.1 A10.5,10.5 0 1,1 54.6,-13.1 Z M42,-19 A4,4 0 1,1 50,-19 A4,4 0 1,1 42,-19 Z" fill="#10B981" fill-rule="evenodd" stroke="#1a1d23" stroke-width="2.2" stroke-linejoin="round"/>
-    </g></svg>
+    <svg viewBox="0 0 240 240" aria-hidden="true">
+      <!-- revised Option A emblem, on-dark: hexagon outlined in steel-grey, four green tally bars, nail as the diagonal 5th stroke -->
+      <polygon points="16,120 68,30 172,30 224,120 172,210 68,210" fill="none" stroke="#E9EBEE" stroke-width="9"/>
+      <g fill="#2E8A52">
+        <rect x="86" y="86" width="7" height="68" rx="3.5"/>
+        <rect x="100" y="86" width="7" height="68" rx="3.5"/>
+        <rect x="114" y="86" width="7" height="68" rx="3.5"/>
+        <rect x="128" y="86" width="7" height="68" rx="3.5"/>
+      </g>
+      <g transform="rotate(48 120 120)">
+        <rect x="103" y="58" width="34" height="13" rx="2" fill="#F5F5F0"/>
+        <path d="M111,71 L129,71 L125,170 L115,170 Z" fill="#F5F5F0"/>
+        <path d="M115,170 L125,170 L120,185 Z" fill="#F5F5F0"/>
+      </g>
+    </svg>
     <span class="brand">Nail <span class="amp">&amp;</span> Tally<span class="tm">&trade;</span></span>
   </a>
   <nav class="site">
@@ -367,12 +379,20 @@ footer.site a:hover{color:#fff;border-color:rgba(255,255,255,.3)}
       <div class="notch"></div>
       <div class="screen">
         <div class="app-bar">
-          <svg class="mk" viewBox="0 0 140 120" aria-hidden="true"><g transform="translate(6,42)">
-            <rect x="0" y="0" width="46" height="20" rx="4" fill="#fff"/>
-            <rect x="0" y="28" width="86" height="20" rx="4" fill="#fff"/>
-            <rect x="0" y="56" width="125" height="20" rx="4" fill="#fff"/>
-            <path d="M46,0 L37.4,-13.1 A10.5,10.5 0 1,1 54.6,-13.1 Z M42,-19 A4,4 0 1,1 50,-19 A4,4 0 1,1 42,-19 Z" fill="#10B981" fill-rule="evenodd"/>
-          </g></svg>
+          <svg class="mk" viewBox="0 0 240 240" aria-hidden="true">
+            <polygon points="16,120 68,30 172,30 224,120 172,210 68,210" fill="none" stroke="#E9EBEE" stroke-width="9"/>
+            <g fill="#2E8A52">
+              <rect x="86" y="86" width="7" height="68" rx="3.5"/>
+              <rect x="100" y="86" width="7" height="68" rx="3.5"/>
+              <rect x="114" y="86" width="7" height="68" rx="3.5"/>
+              <rect x="128" y="86" width="7" height="68" rx="3.5"/>
+            </g>
+            <g transform="rotate(48 120 120)">
+              <rect x="103" y="58" width="34" height="13" rx="2" fill="#F5F5F0"/>
+              <path d="M111,71 L129,71 L125,170 L115,170 Z" fill="#F5F5F0"/>
+              <path d="M115,170 L125,170 L120,185 Z" fill="#F5F5F0"/>
+            </g>
+          </svg>
           <span class="co">Widgetworks Contracting (Sample)<small>42 tools tracked</small></span>
         </div>
         <div class="app-search">
@@ -413,7 +433,7 @@ footer.site a:hover{color:#fff;border-color:rgba(255,255,255,.3)}
         </div>
         <div class="tabbar">
           <span class="tab on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l9-4 9 4-9 4z"/><path d="M3 12l9 4 9-4M3 17l9 4 9-4"/></svg>Inventory</span>
-          <span class="tab add"><span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="#06241b" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span><span>Add</span></span>
+          <span class="tab add"><span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span><span>Add</span></span>
           <span class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.6-7-11a7 7 0 0114 0c0 5.4-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Locations</span>
         </div>
       </div>
@@ -432,7 +452,7 @@ footer.site a:hover{color:#fff;border-color:rgba(255,255,255,.3)}
   <div class="cards">
     <div class="card">
       <div class="icon-tile navy">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#1F3A5F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l9-4 9 4-9 4z"/><path d="M3 12l9 4 9-4M3 17l9 4 9-4"/><path d="M12 8.5v5.5" stroke="#10B981"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="#1F3A5F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l9-4 9 4-9 4z"/><path d="M3 12l9 4 9-4M3 17l9 4 9-4"/><path d="M12 8.5v5.5" stroke="#15512F"/></svg>
       </div>
       <h3>Track across every location</h3>
       <p>Job site, warehouse, yard, or truck — always know where each tool is.</p>
@@ -456,7 +476,7 @@ footer.site a:hover{color:#fff;border-color:rgba(255,255,255,.3)}
     <div class="card">
       <div class="icon-tile green">
         <!-- shield -->
-        <svg viewBox="0 0 24 24" fill="none" stroke="#0ea372" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="#15512F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>
       </div>
       <h3>Your data stays yours</h3>
       <p>Each company's inventory is private and kept separate.</p>
@@ -568,7 +588,7 @@ footer.site a:hover{color:#fff;border-color:rgba(255,255,255,.3)}
     <div class="card">
       <div class="icon-tile navy">
         <!-- price tag -->
-        <svg viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12V5a2 2 0 012-2h7l8 8-9 9z"/><circle cx="8" cy="8" r="1.6"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="#2E8A52" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12V5a2 2 0 012-2h7l8 8-9 9z"/><circle cx="8" cy="8" r="1.6"/></svg>
       </div>
       <h3>One flat price</h3>
       <p>$99/month, no contract.</p>
@@ -613,7 +633,7 @@ footer.site a:hover{color:#fff;border-color:rgba(255,255,255,.3)}
   </div>
   <div class="road">
     <div class="road-item">
-      <div class="ri-icon" style="background:#fff"><svg viewBox="0 0 24 24" fill="none" stroke="#1F3A5F" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5A1.5 1.5 0 014.5 7h2L8 5h5l1.5 2h2A1.5 1.5 0 0118 8.5V17a1.5 1.5 0 01-1.5 1.5h-12A1.5 1.5 0 013 17z"/><circle cx="10.5" cy="12.5" r="3.2"/><path d="M19.5 3.2l.7 1.7 1.7.7-1.7.7-.7 1.7-.7-1.7-1.7-.7 1.7-.7z" fill="#10B981" stroke="#10B981" stroke-width="1"/></svg></div>
+      <div class="ri-icon" style="background:#fff"><svg viewBox="0 0 24 24" fill="none" stroke="#1F3A5F" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5A1.5 1.5 0 014.5 7h2L8 5h5l1.5 2h2A1.5 1.5 0 0118 8.5V17a1.5 1.5 0 01-1.5 1.5h-12A1.5 1.5 0 013 17z"/><circle cx="10.5" cy="12.5" r="3.2"/><path d="M19.5 3.2l.7 1.7 1.7.7-1.7.7-.7 1.7-.7-1.7-1.7-.7 1.7-.7z" fill="#15512F" stroke="#15512F" stroke-width="1"/></svg></div>
       <div>
         <h3>Photo-assisted logging</h3>
         <p>Point your phone and let the app help identify and count what it sees.</p>
@@ -621,7 +641,7 @@ footer.site a:hover{color:#fff;border-color:rgba(255,255,255,.3)}
       </div>
     </div>
     <div class="road-item">
-      <div class="ri-icon" style="background:#fff"><svg viewBox="0 0 24 24" fill="none" stroke="#1F3A5F" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="6.5" y="2.5" width="11" height="19" rx="2.6"/><path d="M6.5 6.5h11M6.5 17.5h11" stroke-width="1.5"/><path d="M10.4 19.6h3.2" stroke="#10B981"/><rect x="9.2" y="8.4" width="2.6" height="2.6" rx=".7"/><rect x="12.7" y="8.4" width="2.6" height="2.6" rx=".7"/><rect x="9.2" y="11.9" width="2.6" height="2.6" rx=".7"/><rect x="12.7" y="11.9" width="2.6" height="2.6" rx=".7"/></svg></div>
+      <div class="ri-icon" style="background:#fff"><svg viewBox="0 0 24 24" fill="none" stroke="#1F3A5F" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="6.5" y="2.5" width="11" height="19" rx="2.6"/><path d="M6.5 6.5h11M6.5 17.5h11" stroke-width="1.5"/><path d="M10.4 19.6h3.2" stroke="#15512F"/><rect x="9.2" y="8.4" width="2.6" height="2.6" rx=".7"/><rect x="12.7" y="8.4" width="2.6" height="2.6" rx=".7"/><rect x="9.2" y="11.9" width="2.6" height="2.6" rx=".7"/><rect x="12.7" y="11.9" width="2.6" height="2.6" rx=".7"/></svg></div>
       <div>
         <h3>iOS &amp; Android apps</h3>
         <p>Native apps in the App Store and Google Play.</p>
@@ -631,7 +651,7 @@ footer.site a:hover{color:#fff;border-color:rgba(255,255,255,.3)}
   </div>
   <!-- Trust strip -->
   <div class="trust-strip">
-    <div class="ts-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+    <div class="ts-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#2E8A52" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
     <div>
       <h3>Your data stays yours</h3>
       <p>Each company's inventory is private and separated. Your data stays yours.</p>
@@ -651,12 +671,20 @@ footer.site a:hover{color:#fff;border-color:rgba(255,255,255,.3)}
 <!-- ============ FOOTER ============ -->
 <footer class="site"><div class="wrap">
   <div class="f-top">
-    <svg viewBox="0 0 140 120" aria-hidden="true"><g transform="translate(6,42)">
-      <rect x="0" y="0" width="46" height="20" rx="4" fill="#fff"/>
-      <rect x="0" y="28" width="86" height="20" rx="4" fill="#fff"/>
-      <rect x="0" y="56" width="125" height="20" rx="4" fill="#fff"/>
-      <path d="M46,0 L37.4,-13.1 A10.5,10.5 0 1,1 54.6,-13.1 Z M42,-19 A4,4 0 1,1 50,-19 A4,4 0 1,1 42,-19 Z" fill="#10B981" fill-rule="evenodd"/>
-    </g></svg>
+    <svg viewBox="0 0 240 240" aria-hidden="true">
+      <polygon points="16,120 68,30 172,30 224,120 172,210 68,210" fill="none" stroke="#E9EBEE" stroke-width="9"/>
+      <g fill="#2E8A52">
+        <rect x="86" y="86" width="7" height="68" rx="3.5"/>
+        <rect x="100" y="86" width="7" height="68" rx="3.5"/>
+        <rect x="114" y="86" width="7" height="68" rx="3.5"/>
+        <rect x="128" y="86" width="7" height="68" rx="3.5"/>
+      </g>
+      <g transform="rotate(48 120 120)">
+        <rect x="103" y="58" width="34" height="13" rx="2" fill="#F5F5F0"/>
+        <path d="M111,71 L129,71 L125,170 L115,170 Z" fill="#F5F5F0"/>
+        <path d="M115,170 L125,170 L120,185 Z" fill="#F5F5F0"/>
+      </g>
+    </svg>
     <span class="f-brand">Nail <span class="amp">&amp;</span> Tally<span class="tm">&trade;</span></span>
   </div>
   <p class="tagline">Tool &amp; material inventory for construction, HVAC, and plumbing crews — no barcodes, no tags, just your phone.</p>
