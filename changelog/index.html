@@ -1,0 +1,161 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Changelog — Nail &amp; Tally&trade;</title>
+<meta name="description" content="Every meaningful change to Nail & Tally, dated, with the why behind it — the same honesty as the build journal, just shorter.">
+<meta name="robots" content="index">
+<meta name="theme-color" content="#1F3A5F">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='112' fill='%231F3A5F'/%3E%3Cg transform='translate(82,82) scale(1.45)'%3E%3Cpolygon points='16,120 68,30 172,30 224,120 172,210 68,210' fill='%2316304F'/%3E%3Cpolygon points='34,120 77,46 163,46 206,120 163,194 77,194' fill='none' stroke='%230F2540' stroke-width='6'/%3E%3Cg fill='%232E8A52'%3E%3Crect x='86' y='86' width='7' height='68' rx='3.5'/%3E%3Crect x='100' y='86' width='7' height='68' rx='3.5'/%3E%3Crect x='114' y='86' width='7' height='68' rx='3.5'/%3E%3Crect x='128' y='86' width='7' height='68' rx='3.5'/%3E%3C/g%3E%3Cg transform='rotate(48 120 120)'%3E%3Crect x='103' y='58' width='34' height='13' rx='2' fill='%23F5F5F0'/%3E%3Cpath d='M111,71 L129,71 L125,170 L115,170 Z' fill='%23F5F5F0'/%3E%3Cpath d='M115,170 L125,170 L120,185 Z' fill='%23F5F5F0'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+</head><body>
+
+<!--
+  ====================================================================
+  CHANGELOG COPY — DRAFT, NOT CLEARED FOR PUBLISH.
+  Entries below were drafted by Jack from what the team has actually
+  shipped (per project-facts.md). The dated "what shipped" list is a
+  FACTUAL CLAIM and must be cleared by Louis + OK'd by Thomas before
+  this page goes live (same rule as the roadmap "where we are now").
+  NOTE: AI photo analysis is deliberately NOT listed as shipped — it
+  is kept future-tense and lives on the /roadmap page only, because
+  it has not been customer-tested/activated. Do not add it here until
+  it is genuinely live for users.
+  Dates use real shipped dates from the project log where known.
+  ====================================================================
+-->
+
+<!-- ============ HEADER (shared) ============ -->
+<header class="site"><div class="wrap">
+  <a class="logo" href="/" aria-label="Nail and Tally home">
+    <svg viewBox="0 0 240 240" aria-hidden="true">
+      <polygon points="16,120 68,30 172,30 224,120 172,210 68,210" fill="none" stroke="#E9EBEE" stroke-width="9"/>
+      <g fill="#2E8A52">
+        <rect x="86" y="86" width="7" height="68" rx="3.5"/>
+        <rect x="100" y="86" width="7" height="68" rx="3.5"/>
+        <rect x="114" y="86" width="7" height="68" rx="3.5"/>
+        <rect x="128" y="86" width="7" height="68" rx="3.5"/>
+      </g>
+      <g transform="rotate(48 120 120)">
+        <rect x="103" y="58" width="34" height="13" rx="2" fill="#F5F5F0"/>
+        <path d="M111,71 L129,71 L125,170 L115,170 Z" fill="#F5F5F0"/>
+        <path d="M115,170 L125,170 L120,185 Z" fill="#F5F5F0"/>
+      </g>
+    </svg>
+    <span class="brand">Nail <span class="amp">&amp;</span> Tally<span class="tm">&trade;</span></span>
+  </a>
+  <nav class="site">
+    <span class="nav-links">
+      <a href="/about/">About</a>
+      <a href="/journal/">Journal</a>
+      <a href="/roadmap/">Roadmap</a>
+    </span>
+    <!-- LOG IN — NEUTRALIZED (app.nailandtally.com not yet deployed). Kept as a non-clickable
+         "coming soon" element so publishing doesn't ship a dead link. TO RE-ENABLE once the app
+         is live: restore this to a real link, i.e. replace the <span> below with
+         <a class="btn-outline" href="https://app.nailandtally.com"> ... Log In ... </a>. -->
+    <span class="btn-outline disabled" role="link" aria-disabled="true" title="Log in — coming soon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h4a2 2 0 012 2v14a2 2 0 01-2 2h-4"/><path d="M10 17l5-5-5-5M15 12H3"/></svg>
+      Log in — coming soon
+    </span>
+    <a class="btn head" href="mailto:info@nailandtally.com?subject=Beta%20access%20request">Request beta access</a>
+  </nav>
+</div></header>
+
+<!-- ============ PAGE-HEADER BAND ============ -->
+<section class="navy-band page-band"><div class="wrap">
+  <span class="eyebrow light">Changelog</span>
+  <h2>What we've shipped</h2>
+  <p class="sub">Every meaningful change, dated, with the why behind it. Same honesty as the journal — just shorter.</p>
+  <span class="keyline"></span>
+</div></section>
+
+<!-- ============ CHANGELOG FEED ============ -->
+<section class="alt" style="padding:64px 0 88px"><div class="wrap">
+  <div class="log">
+
+    <div class="log-entry">
+      <span class="log-date">June 2026</span>
+      <span class="type new">New</span>
+      <h3>A new look: the Fastener logo &amp; brand</h3>
+      <p>We rolled out our emblem — a fastener head with four tally bars and a nail as the fifth stroke — across the app and this site. The count, in a mark. It should feel like it belongs on a job site, not in a boardroom.</p>
+    </div>
+
+    <div class="log-entry">
+      <span class="log-date">June 2026</span>
+      <span class="type new">New</span>
+      <h3>Build a job's pull list from a file</h3>
+      <p>Upload what a job needs — a spreadsheet, a CSV, or a PDF — and Nail &amp; Tally turns it into a list you can pull against. Less retyping, fewer missed items before the truck rolls.</p>
+    </div>
+
+    <div class="log-entry">
+      <span class="log-date">June 2026</span>
+      <span class="type new">New</span>
+      <h3>Locations down to the shelf, bin, or truck</h3>
+      <p>A tool isn't just "at the shop" anymore. Sub-locations let you say which shelf, bin, truck, or job site it's on — so finding it is a glance, not a search.</p>
+    </div>
+
+    <div class="log-entry">
+      <span class="log-date">June 2026</span>
+      <span class="type improved">Improved</span>
+      <h3>Turn locations on and off</h3>
+      <p>Finished a job site? Mark its location inactive and it drops out of your everyday pickers without losing the history. Bring it back any time.</p>
+    </div>
+
+    <div class="log-entry">
+      <span class="log-date">June 2026</span>
+      <span class="type new">New</span>
+      <h3>A desktop dashboard for managers</h3>
+      <p>Managers and PMs get a big-screen view of the whole inventory — for setup, building pull lists, and managing locations and the item list — while the crew keeps working from their phones in the field.</p>
+    </div>
+
+    <div class="log-entry">
+      <span class="log-date">June 2026</span>
+      <span class="type improved">Improved</span>
+      <h3>Tighter sign-in and stronger data separation</h3>
+      <p>We hardened how you sign in and reinforced the walls between companies' data, so each crew's inventory stays private and separate. Security work isn't flashy, but it's the part we won't cut corners on.</p>
+    </div>
+
+  </div>
+</div></section>
+
+<!-- ============ FOOTER (shared) ============ -->
+<footer class="site"><div class="wrap">
+  <div class="f-top">
+    <svg viewBox="0 0 240 240" aria-hidden="true">
+      <polygon points="16,120 68,30 172,30 224,120 172,210 68,210" fill="none" stroke="#E9EBEE" stroke-width="9"/>
+      <g fill="#2E8A52">
+        <rect x="86" y="86" width="7" height="68" rx="3.5"/>
+        <rect x="100" y="86" width="7" height="68" rx="3.5"/>
+        <rect x="114" y="86" width="7" height="68" rx="3.5"/>
+        <rect x="128" y="86" width="7" height="68" rx="3.5"/>
+      </g>
+      <g transform="rotate(48 120 120)">
+        <rect x="103" y="58" width="34" height="13" rx="2" fill="#F5F5F0"/>
+        <path d="M111,71 L129,71 L125,170 L115,170 Z" fill="#F5F5F0"/>
+        <path d="M115,170 L125,170 L120,185 Z" fill="#F5F5F0"/>
+      </g>
+    </svg>
+    <span class="f-brand">Nail <span class="amp">&amp;</span> Tally<span class="tm">&trade;</span></span>
+  </div>
+  <p class="tagline">Tool &amp; material inventory for construction, HVAC, and plumbing crews — no barcodes, no tags, just your phone.</p>
+  <div class="legal">&copy; 2026 Nail and Tally LLC. All rights reserved.</div>
+  <div class="links">
+    <a href="/privacy">Privacy Policy</a>
+    <span class="sep">·</span>
+    <a href="/terms">Terms of Service</a>
+    <span class="sep">·</span>
+    <a href="/about/">About</a>
+    <span class="sep">·</span>
+    <a href="/journal/">Journal</a>
+    <span class="sep">·</span>
+    <a href="/roadmap/">Roadmap</a>
+    <span class="sep">·</span>
+    <a href="/changelog/">Changelog</a>
+    <span class="sep">·</span>
+    <a href="mailto:info@nailandtally.com">info@nailandtally.com</a>
+  </div>
+</div></footer>
+
+</body></html>
