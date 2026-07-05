@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Build Journal — Nail &amp; Tally&trade;</title>
-<meta name="description" content="Building in the open — why we made the calls we made, what we cut, what we got wrong, and everything we ship. The Nail & Tally build journal.">
+<title>It's live &middot; Nail &amp; Tally&trade;</title>
+<meta name="description" content="Build journal #2: the Nail & Tally web dashboard is deployed and live on its own address, with real logins working. Live but early. Here's what it took and where it still is.">
 <meta name="robots" content="index">
 <meta name="theme-color" content="#1F3A5F">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='112' fill='%231F3A5F'/%3E%3Cg transform='translate(82,82) scale(1.45)'%3E%3Cpolygon points='16,120 68,30 172,30 224,120 172,210 68,210' fill='%2316304F'/%3E%3Cpolygon points='34,120 77,46 163,46 206,120 163,194 77,194' fill='none' stroke='%230F2540' stroke-width='6'/%3E%3Cg fill='%232E8A52'%3E%3Crect x='86' y='86' width='7' height='68' rx='3.5'/%3E%3Crect x='100' y='86' width='7' height='68' rx='3.5'/%3E%3Crect x='114' y='86' width='7' height='68' rx='3.5'/%3E%3Crect x='128' y='86' width='7' height='68' rx='3.5'/%3E%3C/g%3E%3Cg transform='rotate(48 120 120)'%3E%3Crect x='103' y='58' width='34' height='13' rx='2' fill='%23F5F5F0'/%3E%3Cpath d='M111,71 L129,71 L125,170 L115,170 Z' fill='%23F5F5F0'/%3E%3Cpath d='M115,170 L125,170 L120,185 Z' fill='%23F5F5F0'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E">
@@ -36,10 +36,10 @@
       <a href="/journal/" aria-current="page">Journal</a>
       <a href="/roadmap/">Roadmap</a>
     </span>
-    <!-- LOG IN — NEUTRALIZED (app.nailandtally.com not yet deployed). Kept as a non-clickable
-         "coming soon" element so publishing doesn't ship a dead link. TO RE-ENABLE once the app
-         is live: restore this to a real link, i.e. replace the <span> below with
-         <a class="btn-outline" href="https://app.nailandtally.com"> ... Log In ... </a>. -->
+    <!-- LOG IN — kept in the same "coming soon" state as the rest of the staged site so this
+         draft post doesn't unilaterally flip site nav. The dashboard IS live at
+         app.nailandtally.com; flipping this element to a real link is a site-wide publish
+         decision (Thomas's call), handled at go-live — not from inside a single post. -->
     <span class="btn-outline disabled" role="link" aria-disabled="true" title="Log in — coming soon">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h4a2 2 0 012 2v14a2 2 0 01-2 2h-4"/><path d="M10 17l5-5-5-5M15 12H3"/></svg>
       Log in — coming soon
@@ -50,42 +50,46 @@
 
 <!-- ============ PAGE-HEADER BAND ============ -->
 <section class="navy-band page-band"><div class="wrap">
-  <span class="eyebrow light">Build journal</span>
-  <h2>Building in the open</h2>
-  <p class="sub">Why we made the calls we made, what we cut, what we got wrong — and everything we ship.</p>
+  <span class="eyebrow light">Build journal &middot; #2</span>
+  <h2>It's live</h2>
+  <p class="sub">Thomas K. &middot; <time datetime="2026-07-03">July 2026</time></p>
   <span class="keyline"></span>
 </div></section>
 
-<!-- ============ POST LIST ============ -->
-<section class="alt" style="padding:64px 0 88px"><div class="wrap">
-  <div class="post-list">
+<!-- ============ ARTICLE ============ -->
+<section class="article"><div class="wrap">
+  <article class="col">
 
-    <!-- POST #2 — DRAFT (awaiting Thomas approval). Date shown as "JUL 2026"; update to actual publish date on go-live. -->
-    <a class="post-card" href="/journal/its-live/">
-      <div class="meta">#2 &middot; Jul 2026 &middot; Thomas K.</div>
-      <h3>It's live</h3>
-      <p class="excerpt">A few nights ago I typed an address into a browser, entered a password, and the thing I've been building loaded up and let me in. That probably doesn't sound like much. To me it was the whole game.</p>
-      <span class="more">Read post
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </span>
+    <p class="lead">A few nights ago I typed an address into a browser, entered a password, and the thing I've been building loaded up and let me in. That probably doesn't sound like much. To me it was the whole game.</p>
+
+    <p>Last post I said I was building this to solve my own problem: tools wandering off, the count nobody has time for. Since then it's mostly been code on my machine. Real, but private. The kind of "done" only I could see. This is the post where that changes: the web dashboard is deployed and live on its own address, with real accounts and real logins. You can sign in, and it actually runs.</p>
+
+    <p>The web side is the manager's view, the desktop companion to the phone. It's where you'd sit down at a real screen and see your inventory across every location, build a pull list for tomorrow's job, and set up who on the crew can see and do what. It's the big-picture, get-organized surface. The day-to-day logging out in the field lives on the phone, where it belongs.</p>
+
+    <p>Here's the honest part about "live," because it's less glamorous than it sounds. Most of getting here wasn't some triumphant feature. It was the plumbing. Pointing a domain at the right place and waiting for it to take. Making sure a password actually creates an account, and that the next person's login doesn't wander into somebody else's data. Fixing the small, boring stuff you only find once it's really running and not just running for you. None of that shows up in a screenshot. All of it is the difference between "it works on my laptop" and "a crew could log into this."</p>
+
+    <p>So I want to be straight about where this is. Live is not finished. This is the moment it works, not the moment it's proven. There's no crew signed in yet; it's early, ahead of any real beta, and there's more polishing and real-world testing to do before I'd put it in front of a working job site and stand behind it. What changed is that it's finally a real thing someone <em>could</em> log into, instead of a promise. That's the milestone. I'm not going to dress it up as more than that.</p>
+
+    <p>The phone app, the part where your camera helps you log a tool, is still coming, and it's in line for app-store review. I'm not going to put a date on it, because I've watched too many people do that and eat their words. When it's real and I can hand it to someone, I'll write about it here. Not before.</p>
+
+    <p>But the shape of the thing is here now. A phone in the field, a dashboard on the desk, and an address you can actually reach. For a while this was just an idea I kept describing to people. Now it's something I can open. Next comes the part I've been building toward the whole time: putting it in front of real crews. More soon.</p>
+
+    <p class="signoff">Thomas K.</p>
+
+  </article>
+</div>
+
+<!-- post-footer nav -->
+<div class="wrap">
+  <div class="post-foot">
+    <a class="back" href="/journal/">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+      Back to the journal
     </a>
-
-    <!-- POST #1 — date is set on publish; update the meta line when this goes live -->
-    <a class="post-card" href="/journal/why-im-building-this/">
-      <!-- PUBLISH DATE: shown as "JUN 2026" below — update to the actual publish month/year on go-live. -->
-      <div class="meta">#1 &middot; Jun 2026 &middot; Thomas K.</div>
-      <h3>Why I'm building this</h3>
-      <p class="excerpt">I want the first thing on this page to be honest, so here it is: I started building Nail &amp; Tally because I was tired of not knowing where my tools were.</p>
-      <span class="more">Read post
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </span>
-    </a>
-
-    <!-- To add a future post: copy one .post-card block above, bump the number,
-         set its date + title + excerpt, and point href at the new /journal/<slug>/ page. -->
-
+    <a class="btn" href="mailto:info@nailandtally.com?subject=Beta%20access%20request">Request beta access</a>
   </div>
-</div></section>
+</div>
+</section>
 
 <!-- ============ FOOTER (shared) ============ -->
 <footer class="site"><div class="wrap">
