@@ -13,7 +13,89 @@
 <style>
 /* Page-specific styles. The shared brand system (tokens, header, footer, .btn,
    .card, hero, phone mockups, responsive rules) now lives in /assets/site.css,
-   lifted verbatim from this file. This page adds nothing extra. */
+   lifted verbatim from this file.
+   Added below: the "dashboard on the desk" companion section, an illustrative
+   desktop-dashboard mockup built in the same clean HTML/CSS style as the phone
+   mockups above. Designed as a clearly-swappable slot so a real screenshot can
+   drop in later (see the marked container + HTML comment in the section markup). */
+
+/* ===== Dashboard-on-the-desk (companion section) ===== */
+.desk .wrap{display:grid;grid-template-columns:.92fr 1.08fr;gap:56px;align-items:center}
+.desk .sec-head{margin:0}
+.desk .feat-list{list-style:none;margin:24px 0 0;padding:0}
+.desk .feat-list li{position:relative;padding-left:30px;margin:0 0 15px;color:#3b4654;font-size:16.5px;line-height:1.5}
+.desk .feat-list li::before{content:"";position:absolute;left:0;top:3px;width:19px;height:19px;border-radius:6px;background:rgba(21,81,47,.12);
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2315512F' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><path d='M5 12l4 4L19 7'/></svg>");
+  background-repeat:no-repeat;background-position:center;background-size:13px 13px}
+.desk .feat-list li strong{color:var(--navy);font-weight:700}
+
+/* the swappable slot: a browser-framed container. Drop a real screenshot in here later. */
+.dash-slot{position:relative}
+.browser{
+  background:#0d1726;border-radius:16px;padding:10px 10px 12px;
+  box-shadow:var(--shadow-lg);border:1px solid rgba(255,255,255,.06);
+}
+.browser .bar{display:flex;align-items:center;gap:7px;padding:5px 6px 9px}
+.browser .bar .dots{display:flex;gap:6px}
+.browser .bar .dots i{width:10px;height:10px;border-radius:50%;background:#3a4761;display:block}
+.browser .bar .url{flex:1;background:#1a2740;border-radius:7px;color:#8fa0bd;font-size:11px;font-weight:600;padding:5px 12px;text-align:center;letter-spacing:.2px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.dash{background:var(--bg);border-radius:10px;overflow:hidden;display:grid;grid-template-columns:150px 1fr}
+/* dashboard sidebar */
+.dash .side{background:var(--navy);color:#fff;padding:14px 12px 18px}
+.dash .side .brandline{display:flex;align-items:center;gap:8px;margin-bottom:16px}
+.dash .side .brandline svg{width:20px;height:auto;flex:none}
+.dash .side .brandline b{font-family:var(--font-display);font-size:14px;font-weight:700;letter-spacing:-.2px}
+.dash .side .nav{list-style:none;margin:0;padding:0}
+.dash .side .nav li{display:flex;align-items:center;gap:9px;font-size:12px;font-weight:600;color:#a9b8ce;padding:8px 9px;border-radius:8px;margin-bottom:2px}
+.dash .side .nav li svg{width:15px;height:15px;flex:none;stroke:#a9b8ce}
+.dash .side .nav li.on{background:rgba(255,255,255,.12);color:#fff}
+.dash .side .nav li.on svg{stroke:var(--green-ondark)}
+/* dashboard main panel */
+.dash .main{padding:15px 16px 18px;min-width:0}
+.dash .main .h{display:flex;align-items:center;justify-content:space-between;margin-bottom:13px}
+.dash .main .h .t{font-family:var(--font-display);font-size:15px;font-weight:700;color:var(--navy);letter-spacing:-.3px}
+.dash .main .h .co{font-size:10.5px;font-weight:700;color:var(--muted);background:#fff;border:1px solid var(--line);padding:4px 10px;border-radius:999px}
+/* location tiles row */
+.dash .tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:13px}
+.dash .tile{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 11px}
+.dash .tile .n{font-size:9px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+.dash .tile .c{font-family:var(--font-display);font-size:19px;font-weight:700;color:var(--navy);line-height:1}
+.dash .tile .c small{font-size:10px;font-weight:600;color:var(--muted-2);margin-left:2px}
+/* two-column: inventory table + pull-list card */
+.dash .cols{display:grid;grid-template-columns:1.35fr 1fr;gap:11px}
+.dash .panel{background:#fff;border:1px solid var(--line);border-radius:11px;overflow:hidden}
+.dash .panel .ph{font-size:11px;font-weight:700;color:var(--navy);padding:10px 12px 8px;border-bottom:1px solid var(--line);letter-spacing:-.1px}
+.dash .trow{display:flex;align-items:center;gap:9px;padding:8px 12px;border-bottom:1px solid #eef1f5;font-size:11px}
+.dash .trow:last-child{border-bottom:none}
+.dash .trow .nm{flex:1;font-weight:700;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dash .trow .lo{color:var(--muted);font-weight:600;white-space:nowrap}
+.dash .badge-loc{font-size:10px;font-weight:700;padding:2px 8px;border-radius:999px;white-space:nowrap}
+.dash .badge-loc.ok{background:rgba(21,81,47,.11);color:var(--green-deep)}
+.dash .badge-loc.miss{background:rgba(220,38,38,.1);color:var(--red)}
+.dash .badge-loc.low{background:#fef6e7;color:#b45309}
+/* pull-list card */
+.dash .pull{padding:11px 13px 13px}
+.dash .pull .pt{font-size:11px;font-weight:700;color:var(--navy);margin-bottom:2px}
+.dash .pull .pd{font-size:10px;font-weight:600;color:var(--muted);margin-bottom:10px}
+.dash .pull .pi{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--ink);font-weight:600;margin-bottom:8px}
+.dash .pull .pi .ck{width:15px;height:15px;border-radius:5px;border:1.5px solid #c3cee0;flex:none;display:flex;align-items:center;justify-content:center}
+.dash .pull .pi.done .ck{background:var(--green);border-color:var(--green)}
+.dash .pull .pi.done .ck svg{width:9px;height:9px;stroke:#fff}
+.dash .pull .pi.done span{color:var(--muted);text-decoration:line-through}
+.dash .pull .pbtn{margin-top:4px;background:var(--green);color:#fff;text-align:center;font-size:11px;font-weight:800;padding:8px;border-radius:8px;box-shadow:0 3px 8px rgba(21,81,47,.28)}
+.desk .sample-wrap{text-align:left;margin-top:22px}
+
+@media(max-width:960px){
+  .desk .wrap{grid-template-columns:1fr;gap:40px}
+  .dash{grid-template-columns:120px 1fr}
+}
+@media(max-width:760px){
+  .dash{grid-template-columns:1fr}
+  .dash .side{display:none}  /* below the fold on phones: show the dashboard's main panel only */
+  .dash .tiles{grid-template-columns:repeat(2,1fr)}
+  .dash .cols{grid-template-columns:1fr}
+  .desk .sample-wrap{text-align:center}
+}
 </style></head><body>
 
 <!-- ============ HEADER ============ -->
@@ -42,14 +124,11 @@
       <a href="/journal/">Journal</a>
       <a href="/roadmap/">Roadmap</a>
     </span>
-    <!-- LOG IN — NEUTRALIZED (app.nailandtally.com not yet deployed). Kept as a non-clickable
-         "coming soon" element so publishing doesn't ship a dead link. TO RE-ENABLE once the app
-         is live: restore this to a real link, i.e. replace the <span> below with
-         <a class="btn-outline" href="https://app.nailandtally.com"> ... Log In ... </a>. -->
-    <span class="btn-outline disabled" role="link" aria-disabled="true" title="Log in (coming soon)">
+    <!-- LOG IN: live link to the dashboard (app.nailandtally.com is deployed + live). -->
+    <a class="btn-outline" href="https://app.nailandtally.com" title="Log in">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h4a2 2 0 012 2v14a2 2 0 01-2 2h-4"/><path d="M10 17l5-5-5-5M15 12H3"/></svg>
-      Log in (coming soon)
-    </span>
+      Log in
+    </a>
     <a class="btn head" href="mailto:info@nailandtally.com?subject=Beta%20access%20request">Request beta access</a>
   </nav>
 </div></header>
@@ -246,6 +325,106 @@
     </div>
   </div>
   <div style="text-align:center"><span class="sample-tag"><span class="d"></span>Sample data shown. Illustrative mockups, not real customer data.</span></div>
+</div></section>
+
+<!-- ============ DASHBOARD ON THE DESK (companion) ============ -->
+<!-- NOTE: phone stays the hero. This is the manager/owner's big-screen COMPANION view.
+     The dashboard IS live; there are no customers yet, so keep language to "here's the
+     manager's view" and NEVER imply usage/traction. All figures are sample data. -->
+<section class="desk"><div class="wrap">
+  <div class="desk-copy">
+    <div class="sec-head">
+      <span class="eyebrow">A dashboard on the desk</span>
+      <h2>A phone in the field, a dashboard on the desk</h2>
+      <p class="sub">The phone does the day-to-day out on the job. The web dashboard is the big-screen view for owners and managers: see inventory across every location, build the pull lists for tomorrow's jobs, and set who on the crew can see and do what. The desk companion to the phone in the field.</p>
+      <span class="keyline"></span>
+    </div>
+    <ul class="feat-list">
+      <li><strong>Cross-location inventory at a glance.</strong> Warehouse, yard, trucks, and every job site on one screen.</li>
+      <li><strong>Build and assign pull lists.</strong> Line up what each crew needs before they roll out.</li>
+      <li><strong>Manage crew access and roles.</strong> Decide who can view, who can edit, and who can move gear.</li>
+      <li><strong>Your company's data, private and separate.</strong> Each company's inventory is walled off from every other.</li>
+    </ul>
+  </div>
+
+  <div class="dash-slot">
+    <!-- ============================================================
+         SWAPPABLE SCREENSHOT SLOT
+         Drop a REAL dashboard screenshot in here later. To swap:
+         replace everything between <div class="browser"> ... </div>
+         (or just the inner <div class="dash"> ... </div>) with:
+             <img src="/assets/dashboard-screenshot.png"
+                  alt="Nail & Tally web dashboard" style="border-radius:10px">
+         Keep the outer .browser frame + the sample-data tag below.
+         The mockup below is illustrative only, not real customer data.
+         ============================================================ -->
+    <div class="browser" role="img" aria-label="Web dashboard mockup: cross-location inventory and a pull list, with sample data">
+      <div class="bar">
+        <span class="dots"><i></i><i></i><i></i></span>
+        <span class="url">app.nailandtally.com</span>
+      </div>
+      <div class="dash">
+        <!-- sidebar nav -->
+        <div class="side">
+          <div class="brandline">
+            <svg viewBox="0 0 240 240" aria-hidden="true">
+              <polygon points="16,120 68,30 172,30 224,120 172,210 68,210" fill="none" stroke="#E9EBEE" stroke-width="9"/>
+              <g fill="#2E8A52">
+                <rect x="86" y="86" width="7" height="68" rx="3.5"/>
+                <rect x="100" y="86" width="7" height="68" rx="3.5"/>
+                <rect x="114" y="86" width="7" height="68" rx="3.5"/>
+                <rect x="128" y="86" width="7" height="68" rx="3.5"/>
+              </g>
+              <g transform="rotate(48 120 120)">
+                <rect x="103" y="58" width="34" height="13" rx="2" fill="#F5F5F0"/>
+                <path d="M111,71 L129,71 L125,170 L115,170 Z" fill="#F5F5F0"/>
+                <path d="M115,170 L125,170 L120,185 Z" fill="#F5F5F0"/>
+              </g>
+            </svg>
+            <b>Nail &amp; Tally</b>
+          </div>
+          <ul class="nav">
+            <li class="on"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="5" rx="1.5"/><rect x="13" y="10" width="8" height="11" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/></svg>Overview</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l9-4 9 4-9 4z"/><path d="M3 12l9 4 9-4M3 17l9 4 9-4"/></svg>Inventory</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.6-7-11a7 7 0 0114 0c0 5.4-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Locations</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6h11M9 12h11M9 18h11"/><path d="M4 6l1 1 2-2M4 12l1 1 2-2M4 18l1 1 2-2"/></svg>Pull lists</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0112 0M16 6a3 3 0 010 6M21 20a6 6 0 00-4-5.6"/></svg>Crew &amp; roles</li>
+          </ul>
+        </div>
+        <!-- main panel -->
+        <div class="main">
+          <div class="h">
+            <span class="t">Inventory overview</span>
+            <span class="co">Widgetworks Contracting (Sample)</span>
+          </div>
+          <div class="tiles">
+            <div class="tile"><div class="n">Warehouse</div><div class="c">128<small>items</small></div></div>
+            <div class="tile"><div class="n">Yard</div><div class="c">52<small>items</small></div></div>
+            <div class="tile"><div class="n">Truck 2</div><div class="c">34<small>items</small></div></div>
+            <div class="tile"><div class="n">Oak St.</div><div class="c">19<small>items</small></div></div>
+          </div>
+          <div class="cols">
+            <div class="panel">
+              <div class="ph">Recent items</div>
+              <div class="trow"><span class="nm">DeWalt Impact Driver</span><span class="badge-loc ok">Truck 2</span></div>
+              <div class="trow"><span class="nm">Milwaukee Hammer Drill</span><span class="badge-loc ok">Warehouse</span></div>
+              <div class="trow"><span class="nm">Hilti Demo Hammer</span><span class="badge-loc miss">Missing</span></div>
+              <div class="trow"><span class="nm">3/4" Copper Fittings</span><span class="badge-loc low">Low</span></div>
+            </div>
+            <div class="panel pull">
+              <div class="pt">Pull list: Oak St.</div>
+              <div class="pd">For tomorrow's crew</div>
+              <div class="pi done"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4L19 7"/></svg></span><span>Rotary laser</span></div>
+              <div class="pi"><span class="ck"></span><span>Impact driver</span></div>
+              <div class="pi"><span class="ck"></span><span>Pipe threader</span></div>
+              <div class="pbtn">Assign to crew</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="sample-wrap"><span class="sample-tag"><span class="d"></span>Sample data shown. Illustrative mockups, not real customer data.</span></div>
+  </div>
 </div></section>
 
 <!-- ============ WHO IT'S FOR ============ -->
