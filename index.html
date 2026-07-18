@@ -1,108 +1,18 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Nail &amp; Tally &middot; Stop losing tools.</title>
-<meta name="description" content="Nail &amp; Tally tracks every tool across every job site — no barcodes, no tags, just your phone. Built for construction, HVAC, and plumbing crews. Pricing coming soon.">
+<title>Nail &amp; Tally &middot; Know where every tool is.</title>
+<meta name="description" content="Nail &amp; Tally tracks every tool and every count across your trucks, job sites, and shop — from the phone in your pocket. No barcodes, no tags, no scanners. Built for construction, HVAC, plumbing, and carpentry crews.">
 <meta name="robots" content="index">
-<meta name="theme-color" content="#111827">
-<!-- Favicon: revised Option A emblem (hexagon bolt-head + four tally bars + nail as the 5th stroke), inlined as a data-URI SVG so the site stays self-contained -->
+<meta name="theme-color" content="#122238">
+<!-- Favicon: the Fastener emblem (hexagon bolt-head, four tally bars, nail as the fifth stroke) -->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='112' fill='%231F3A5F'/%3E%3Cg transform='translate(82,82) scale(1.45)'%3E%3Cpolygon points='16,120 68,30 172,30 224,120 172,210 68,210' fill='%2316304F'/%3E%3Cpolygon points='34,120 77,46 163,46 206,120 163,194 77,194' fill='none' stroke='%230F2540' stroke-width='6'/%3E%3Cg fill='%232E8A52'%3E%3Crect x='86' y='86' width='7' height='68' rx='3.5'/%3E%3Crect x='100' y='86' width='7' height='68' rx='3.5'/%3E%3Crect x='114' y='86' width='7' height='68' rx='3.5'/%3E%3Crect x='128' y='86' width='7' height='68' rx='3.5'/%3E%3C/g%3E%3Cg transform='rotate(48 120 120)'%3E%3Crect x='103' y='58' width='34' height='13' rx='2' fill='%23F5F5F0'/%3E%3Cpath d='M111,71 L129,71 L125,170 L115,170 Z' fill='%23F5F5F0'/%3E%3Cpath d='M115,170 L125,170 L120,185 Z' fill='%23F5F5F0'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/site.css">
-<style>
-/* Page-specific styles. The shared brand system (tokens, header, footer, .btn,
-   .card, hero, phone mockups, responsive rules) now lives in /assets/site.css,
-   lifted verbatim from this file.
-   Added below: the "dashboard on the desk" companion section, an illustrative
-   desktop-dashboard mockup built in the same clean HTML/CSS style as the phone
-   mockups above. Designed as a clearly-swappable slot so a real screenshot can
-   drop in later (see the marked container + HTML comment in the section markup). */
-
-/* ===== Dashboard-on-the-desk (companion section) ===== */
-.desk .wrap{display:grid;grid-template-columns:.92fr 1.08fr;gap:56px;align-items:center}
-.desk .sec-head{margin:0}
-.desk .feat-list{list-style:none;margin:24px 0 0;padding:0}
-.desk .feat-list li{position:relative;padding-left:30px;margin:0 0 15px;color:#3b4654;font-size:16.5px;line-height:1.5}
-.desk .feat-list li::before{content:"";position:absolute;left:0;top:3px;width:19px;height:19px;border-radius:6px;background:rgba(21,81,47,.12);
-  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2315512F' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><path d='M5 12l4 4L19 7'/></svg>");
-  background-repeat:no-repeat;background-position:center;background-size:13px 13px}
-.desk .feat-list li strong{color:var(--navy);font-weight:700}
-
-/* the swappable slot: a browser-framed container. Drop a real screenshot in here later. */
-.dash-slot{position:relative}
-.browser{
-  background:#0d1726;border-radius:16px;padding:10px 10px 12px;
-  box-shadow:var(--shadow-lg);border:1px solid rgba(255,255,255,.06);
-}
-.browser .bar{display:flex;align-items:center;gap:7px;padding:5px 6px 9px}
-.browser .bar .dots{display:flex;gap:6px}
-.browser .bar .dots i{width:10px;height:10px;border-radius:50%;background:#3a4761;display:block}
-.browser .bar .url{flex:1;background:#1a2740;border-radius:7px;color:#8fa0bd;font-size:11px;font-weight:600;padding:5px 12px;text-align:center;letter-spacing:.2px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
-.dash{background:var(--bg);border-radius:10px;overflow:hidden;display:grid;grid-template-columns:150px 1fr}
-/* dashboard sidebar */
-.dash .side{background:var(--navy);color:#fff;padding:14px 12px 18px}
-.dash .side .brandline{display:flex;align-items:center;gap:8px;margin-bottom:16px}
-.dash .side .brandline svg{width:20px;height:auto;flex:none}
-.dash .side .brandline b{font-family:var(--font-display);font-size:14px;font-weight:700;letter-spacing:-.2px}
-.dash .side .nav{list-style:none;margin:0;padding:0}
-.dash .side .nav li{display:flex;align-items:center;gap:9px;font-size:12px;font-weight:600;color:#a9b8ce;padding:8px 9px;border-radius:8px;margin-bottom:2px}
-.dash .side .nav li svg{width:15px;height:15px;flex:none;stroke:#a9b8ce}
-.dash .side .nav li.on{background:rgba(255,255,255,.12);color:#fff}
-.dash .side .nav li.on svg{stroke:var(--green-ondark)}
-/* dashboard main panel */
-.dash .main{padding:15px 16px 18px;min-width:0}
-.dash .main .h{display:flex;align-items:center;justify-content:space-between;margin-bottom:13px}
-.dash .main .h .t{font-family:var(--font-display);font-size:15px;font-weight:700;color:var(--navy);letter-spacing:-.3px}
-.dash .main .h .co{font-size:10.5px;font-weight:700;color:var(--muted);background:#fff;border:1px solid var(--line);padding:4px 10px;border-radius:999px}
-/* location tiles row */
-.dash .tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:13px}
-.dash .tile{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 11px}
-.dash .tile .n{font-size:9px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
-.dash .tile .c{font-family:var(--font-display);font-size:19px;font-weight:700;color:var(--navy);line-height:1}
-.dash .tile .c small{font-size:10px;font-weight:600;color:var(--muted-2);margin-left:2px}
-/* two-column: inventory table + pull-list card */
-.dash .cols{display:grid;grid-template-columns:1.35fr 1fr;gap:11px}
-.dash .panel{background:#fff;border:1px solid var(--line);border-radius:11px;overflow:hidden}
-.dash .panel .ph{font-size:11px;font-weight:700;color:var(--navy);padding:10px 12px 8px;border-bottom:1px solid var(--line);letter-spacing:-.1px}
-.dash .trow{display:flex;align-items:center;gap:9px;padding:8px 12px;border-bottom:1px solid #eef1f5;font-size:11px}
-.dash .trow:last-child{border-bottom:none}
-.dash .trow .nm{flex:1;font-weight:700;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.dash .trow .lo{color:var(--muted);font-weight:600;white-space:nowrap}
-.dash .badge-loc{font-size:10px;font-weight:700;padding:2px 8px;border-radius:999px;white-space:nowrap}
-.dash .badge-loc.ok{background:rgba(21,81,47,.11);color:var(--green-deep)}
-.dash .badge-loc.miss{background:rgba(220,38,38,.1);color:var(--red)}
-.dash .badge-loc.low{background:#fef6e7;color:#b45309}
-/* pull-list card */
-.dash .pull{padding:11px 13px 13px}
-.dash .pull .pt{font-size:11px;font-weight:700;color:var(--navy);margin-bottom:2px}
-.dash .pull .pd{font-size:10px;font-weight:600;color:var(--muted);margin-bottom:10px}
-.dash .pull .pi{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--ink);font-weight:600;margin-bottom:8px}
-.dash .pull .pi .ck{width:15px;height:15px;border-radius:5px;border:1.5px solid #c3cee0;flex:none;display:flex;align-items:center;justify-content:center}
-.dash .pull .pi.done .ck{background:var(--green);border-color:var(--green)}
-.dash .pull .pi.done .ck svg{width:9px;height:9px;stroke:#fff}
-.dash .pull .pi.done span{color:var(--muted);text-decoration:line-through}
-.dash .pull .pbtn{margin-top:4px;background:var(--green);color:#fff;text-align:center;font-size:11px;font-weight:800;padding:8px;border-radius:8px;box-shadow:0 3px 8px rgba(21,81,47,.28)}
-.desk .sample-wrap{text-align:left;margin-top:22px}
-
-@media(max-width:960px){
-  .desk .wrap{grid-template-columns:1fr;gap:40px}
-  .dash{grid-template-columns:120px 1fr}
-}
-@media(max-width:760px){
-  .dash{grid-template-columns:1fr}
-  .dash .side{display:none}  /* below the fold on phones: show the dashboard's main panel only */
-  .dash .tiles{grid-template-columns:repeat(2,1fr)}
-  .dash .cols{grid-template-columns:1fr}
-  .desk .sample-wrap{text-align:center}
-}
-</style></head><body>
+</head><body>
 
 <!-- ============ HEADER ============ -->
 <header class="site"><div class="wrap">
   <a class="logo" href="/" aria-label="Nail and Tally home">
     <svg viewBox="0 0 240 240" aria-hidden="true">
-      <!-- revised Option A emblem, on-dark: hexagon outlined in steel-grey, four green tally bars, nail as the diagonal 5th stroke -->
       <polygon points="16,120 68,30 172,30 224,120 172,210 68,210" fill="none" stroke="#E9EBEE" stroke-width="9"/>
       <g fill="#2E8A52">
         <rect x="86" y="86" width="7" height="68" rx="3.5"/>
@@ -129,30 +39,33 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h4a2 2 0 012 2v14a2 2 0 01-2 2h-4"/><path d="M10 17l5-5-5-5M15 12H3"/></svg>
       Log in
     </a>
-    <a class="btn head" href="mailto:info@nailandtally.com?subject=Beta%20access%20request">Request beta access</a>
+    <a class="btn head" href="mailto:info@nailandtally.com?subject=Free%20pilot%20request"><span class="cta-full">Start a free pilot</span><span class="cta-short">Free pilot</span></a>
   </nav>
 </div></header>
 
 <!-- ============ HERO ============ -->
 <section class="hero"><div class="wrap">
   <div class="hero-copy">
-    <span class="eyebrow light">Tool &amp; material tracking for the trades</span>
-    <h1>Stop losing<br>tools.</h1>
-    <p class="lead">Nail &amp; Tally tracks every tool across every job site. No barcodes, no tags, just your phone.</p>
-    <p class="support">Built for construction, HVAC, and plumbing crews. <b>Pricing: coming soon.</b></p>
+    <span class="eyebrow light">
+      <svg class="tally" viewBox="0 0 22 14" aria-hidden="true"><rect x="0" y="0" width="2.5" height="14"/><rect x="5" y="0" width="2.5" height="14"/><rect x="10" y="0" width="2.5" height="14"/><rect x="15" y="0" width="2.5" height="14"/><line x1="20.5" y1="1" x2="1" y2="13"/></svg>
+      Tool &amp; material tracking for the trades
+    </span>
+    <h1>Know where<br>every tool is.</h1>
+    <p class="lead">Across every truck, job site, and shop &mdash; from the phone in your pocket. <b>No barcodes, no tags, no scanners.</b> Anyone logs a tool when it moves; everyone sees where it is.</p>
     <div class="cta-row">
-      <a class="btn lg" href="mailto:info@nailandtally.com?subject=Beta%20access%20request">Request beta access</a>
-      <a class="btn-ghost" href="#see-it">See it in action
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      <a class="btn lg" href="mailto:info@nailandtally.com?subject=Free%20pilot%20request">Start a free pilot</a>
+      <a class="btn-ghost" href="#how">See how it works
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
       </a>
     </div>
-    <span class="trust">Early pilots underway on real job sites. <b>Built by people who've run the crews.</b></span>
+    <p class="support">BUILT FOR CONSTRUCTION &middot; HVAC &middot; PLUMBING &middot; CARPENTRY</p>
+    <span class="trust">Built by a working tradesman to fix his own truck-and-tools problem &mdash; <b>not by a software company that decided tools were a market.</b> <a class="txt-link" href="/about/">Read the story</a></span>
   </div>
   <div class="hero-col-phone">
-    <!-- ===== HERO PHONE: inventory home ===== -->
+    <!-- ===== HERO PHONE: inventory home (sample data) ===== -->
     <div class="phone hero-phone" role="img" aria-label="App mockup: tool inventory list showing sample data">
-      <div class="notch"></div>
       <div class="screen">
+        <div class="notch"></div>
         <div class="app-bar">
           <svg class="mk" viewBox="0 0 240 240" aria-hidden="true">
             <polygon points="16,120 68,30 172,30 224,120 172,210 68,210" fill="none" stroke="#E9EBEE" stroke-width="9"/>
@@ -168,43 +81,37 @@
               <path d="M115,170 L125,170 L120,185 Z" fill="#F5F5F0"/>
             </g>
           </svg>
-          <span class="co">Widgetworks Contracting (Sample)<small>42 tools tracked</small></span>
+          <span class="co">Widgetworks Contracting (Sample)<small>42 TOOLS TRACKED</small></span>
         </div>
         <div class="app-search">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
-          Search tools…
+          Search tools&hellip;
         </div>
         <div class="chips">
           <span class="chip on">All</span>
-          <span class="chip">Warehouse</span>
+          <span class="chip">Shop</span>
           <span class="chip">Truck 2</span>
           <span class="chip">Job: Oak St.</span>
         </div>
         <div class="ilist">
-          <!-- impact driver -->
           <div class="irow"><div class="ithumb">
             <svg viewBox="0 0 24 24" fill="none" stroke="#1F3A5F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h6l2-2 4 4-2 2H7v3H3z"/><path d="M15 7l4-4 2 2-4 4"/></svg>
-          </div><div class="imeta"><div class="iname">DeWalt Impact Driver</div><div class="iloc"><span class="dot g"></span><span class="lab">Truck 2</span></div></div></div>
-          <!-- hammer drill -->
+          </div><div class="imeta"><div class="iname">DeWalt Impact Driver</div><div class="iloc"><span class="dot g"></span><span class="lab">TRUCK 2</span></div></div></div>
           <div class="irow"><div class="ithumb">
             <svg viewBox="0 0 24 24" fill="none" stroke="#1F3A5F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="9" height="7" rx="1.5"/><path d="M12 10h4l4-2v8l-4-2h-4"/><path d="M6 15v4"/></svg>
-          </div><div class="imeta"><div class="iname">Milwaukee Hammer Drill</div><div class="iloc"><span class="dot g"></span><span class="lab">Warehouse</span></div></div></div>
-          <!-- rotary laser -->
+          </div><div class="imeta"><div class="iname">Milwaukee Hammer Drill</div><div class="iloc"><span class="dot g"></span><span class="lab">SHOP</span></div></div></div>
           <div class="irow"><div class="ithumb">
             <svg viewBox="0 0 24 24" fill="none" stroke="#1F3A5F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="9" width="14" height="9" rx="1.5"/><path d="M12 9V5M3 13h2M19 13h2"/></svg>
-          </div><div class="imeta"><div class="iname">Bosch Rotary Laser</div><div class="iloc"><span class="dot g"></span><span class="lab">Job: Oak St.</span></div></div></div>
-          <!-- demo hammer - MISSING -->
+          </div><div class="imeta"><div class="iname">Bosch Rotary Laser</div><div class="iloc"><span class="dot g"></span><span class="lab">JOB: OAK ST.</span></div></div></div>
           <div class="irow"><div class="ithumb">
             <svg viewBox="0 0 24 24" fill="none" stroke="#1F3A5F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3l5 5-2 2-5-5z"/><path d="M11 8L5 14l-2 5 5-2 6-6"/></svg>
-          </div><div class="imeta"><div class="iname">Hilti Demo Hammer</div><div class="iloc"><span class="dot r"></span><span class="lab miss">Missing</span></div></div></div>
-          <!-- pipe threader -->
+          </div><div class="imeta"><div class="iname">Hilti Demo Hammer</div><div class="iloc"><span class="dot r"></span><span class="lab miss">MISSING</span></div></div></div>
           <div class="irow"><div class="ithumb">
             <svg viewBox="0 0 24 24" fill="none" stroke="#1F3A5F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h7M14 8a4 4 0 110 8M11 9v6"/><circle cx="6" cy="12" r="2.5"/></svg>
-          </div><div class="imeta"><div class="iname">Pipe Threader</div><div class="iloc"><span class="dot g"></span><span class="lab">Truck 2</span></div></div></div>
-          <!-- copper fittings - LOW -->
+          </div><div class="imeta"><div class="iname">Pipe Threader</div><div class="iloc"><span class="dot g"></span><span class="lab">TRUCK 2</span></div></div></div>
           <div class="irow"><div class="ithumb">
             <svg viewBox="0 0 24 24" fill="none" stroke="#1F3A5F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4v6M17 4v6M4 10h16l-2 4H6z"/><path d="M9 14v6M15 14v6"/></svg>
-          </div><div class="imeta"><div class="iname">3/4" Copper Fittings (x40)</div><div class="iloc"><span class="dot a"></span><span class="lab low">Warehouse: low</span></div></div></div>
+          </div><div class="imeta"><div class="iname">3/4" Copper Fittings (x40)</div><div class="iloc"><span class="dot a"></span><span class="lab low">SHOP: LOW</span></div></div></div>
         </div>
         <div class="tabbar">
           <span class="tab on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l9-4 9 4-9 4z"/><path d="M3 12l9 4 9-4M3 17l9 4 9-4"/></svg>Inventory</span>
@@ -216,56 +123,117 @@
   </div>
 </div></section>
 
-<!-- ============ WHAT IT DOES ============ -->
+<!-- ============ FACT BAR ============ -->
+<div class="factbar"><div class="wrap">
+  <div class="fact"><b>No hardware, ever.</b>No barcodes to print, no tags to stick on, no scanner guns to buy. The phone is the whole system.</div>
+  <div class="fact"><b>A photo on every item.</b>Nobody guesses which drill. You see it before you go looking for it.</div>
+  <div class="fact"><b>Free pilots, running now.</b>We put it on real trucks with real crews first. Pricing &mdash; coming soon.</div>
+</div></div>
+
+<!-- ============ 01 WHAT IT DOES ============ -->
 <section><div class="wrap">
   <div class="sec-head">
-    <span class="eyebrow">What it does</span>
+    <span class="eyebrow">
+      <svg class="tally" viewBox="0 0 22 14" aria-hidden="true"><rect x="0" y="0" width="2.5" height="14"/><rect x="5" y="0" width="2.5" height="14"/><rect x="10" y="0" width="2.5" height="14"/><rect x="15" y="0" width="2.5" height="14"/><line x1="20.5" y1="1" x2="1" y2="13"/></svg>
+      01 &middot; What it does
+    </span>
     <h2>Your whole inventory, in your pocket</h2>
-    <p class="sub">A crew's tools and materials move constantly, from truck to warehouse to job site to the next job site. Nail &amp; Tally keeps the count straight without slowing anyone down.</p>
-    <span class="keyline"></span>
+    <p class="sub">Tools and material move all day &mdash; shop to truck, truck to site, site to the next site. Nail &amp; Tally keeps the count straight without slowing anyone down.</p>
   </div>
   <div class="cards">
     <div class="card">
-      <div class="icon-tile navy">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#1F3A5F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l9-4 9 4-9 4z"/><path d="M3 12l9 4 9-4M3 17l9 4 9-4"/><path d="M12 8.5v5.5" stroke="#15512F"/></svg>
+      <div class="icon-tile">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#1F3A5F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l9-4 9 4-9 4z"/><path d="M3 12l9 4 9-4M3 17l9 4 9-4"/></svg>
       </div>
-      <h3>Track across every location</h3>
-      <p>Job site, warehouse, yard, or truck: always know where each tool is.</p>
+      <h3>Every location, one answer</h3>
+      <p>Truck, job site, shop, yard &mdash; down to the shelf or bin. "Where's the impact driver" stops being a phone chain and becomes a three-second look.</p>
     </div>
     <div class="card">
-      <div class="icon-tile navy">
-        <!-- barcode with slash -->
-        <svg viewBox="0 0 24 24" fill="none" stroke="#1F3A5F" stroke-width="2" stroke-linecap="round"><path d="M4 5v14M8 5v14M12 5v14M16 5v14M20 5v14"/><path d="M3 21L21 3" stroke="#DC2626" stroke-width="2.2"/></svg>
+      <div class="icon-tile">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#1F3A5F" stroke-width="2" stroke-linecap="round"><path d="M4 5v14M8 5v14M12 5v14M16 5v14M20 5v14"/><path d="M3 21L21 3" stroke="#A93B2A" stroke-width="2.2"/></svg>
       </div>
       <h3>No barcodes, no tags, no scanners</h3>
-      <p>Log and find tools right from your phone. No hardware to buy or maintain.</p>
-    </div>
-    <div class="card">
-      <div class="icon-tile navy">
-        <!-- camera -->
-        <svg viewBox="0 0 24 24" fill="none" stroke="#1F3A5F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8a2 2 0 012-2h2l1.5-2h7L18 6h2a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><circle cx="12" cy="12.5" r="3.5"/></svg>
-      </div>
-      <h3>Photos on every item</h3>
-      <p>No guessing which drill or which fitting. See it before you go looking.</p>
+      <p>Tag systems die because nobody scans the tags. There's nothing to scan here &mdash; logging a tool takes the phone already in your hand and a few seconds.</p>
     </div>
     <div class="card">
       <div class="icon-tile green">
-        <!-- shield -->
         <svg viewBox="0 0 24 24" fill="none" stroke="#15512F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>
       </div>
       <h3>Your data stays yours</h3>
-      <p>Each company's inventory is private and kept separate.</p>
+      <p>Each company's inventory is private and walled off at the database level. Your counts are your business, nobody else's.</p>
     </div>
   </div>
 </div></section>
 
-<!-- ============ SEE IT IN ACTION (NEW) ============ -->
-<section id="see-it" class="alt"><div class="wrap">
-  <div class="sec-head center">
-    <span class="eyebrow">See it in action</span>
-    <h2>See it in action</h2>
-    <p class="sub">Here's what your crew sees: your whole tool inventory, every location, on the phone that's already in their pocket.</p>
-    <span class="keyline"></span>
+<!-- ============ 02 HOW IT WORKS ============ -->
+<section id="how" class="band-paper2"><div class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">
+      <svg class="tally" viewBox="0 0 22 14" aria-hidden="true"><rect x="0" y="0" width="2.5" height="14"/><rect x="5" y="0" width="2.5" height="14"/><rect x="10" y="0" width="2.5" height="14"/><rect x="15" y="0" width="2.5" height="14"/><line x1="20.5" y1="1" x2="1" y2="13"/></svg>
+      02 &middot; How it works
+    </span>
+    <h2>Four moves. That's the system.</h2>
+    <p class="sub">If your crew can send a text, they can keep the inventory straight. No training day, no manual.</p>
+  </div>
+  <div class="steps">
+    <div class="step">
+      <span class="n">STEP 01</span>
+      <div>
+        <h3>Add</h3>
+        <p>Type the name, snap a photo, pick where it lives. That's the whole setup for an item.</p>
+      </div>
+      <p class="how"><b>About fifteen seconds a tool</b> &mdash; done once, standing in the shop with one hand free.</p>
+    </div>
+    <div class="step">
+      <span class="n">STEP 02</span>
+      <div>
+        <h3>Track</h3>
+        <p>Open the app and see everything you own, with a photo and a location on every item.</p>
+      </div>
+      <p class="how"><b>Filter by truck, site, or shop.</b> The answer to "do we have one, and where" is just sitting there.</p>
+    </div>
+    <div class="step">
+      <span class="n">STEP 03</span>
+      <div>
+        <h3>Transfer</h3>
+        <p>Loading out for a job? Log the move in the time it takes to close the tailgate. The count follows the tool.</p>
+      </div>
+      <p class="how"><b>Whoever moves it, logs it.</b> No end-of-day reconstruction, no "I think it's on Danny's truck."</p>
+    </div>
+    <div class="step">
+      <span class="n">STEP 04</span>
+      <div>
+        <h3>Pull lists</h3>
+        <p>Line up what tomorrow's job needs &mdash; or upload the list from a spreadsheet or PDF &mdash; and hand it to the crew.</p>
+      </div>
+      <p class="how"><b>The crew checks items off as they load.</b> The truck rolls out full the first time.</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- ============ 03 FOUNDER ============ -->
+<section class="founder band-navy"><div class="wrap">
+  <span class="eyebrow light">
+    <svg class="tally" viewBox="0 0 22 14" aria-hidden="true"><rect x="0" y="0" width="2.5" height="14"/><rect x="5" y="0" width="2.5" height="14"/><rect x="10" y="0" width="2.5" height="14"/><rect x="15" y="0" width="2.5" height="14"/><line x1="20.5" y1="1" x2="1" y2="13"/></svg>
+    03 &middot; Who built this
+  </span>
+  <blockquote style="margin-top:22px">&ldquo;I'm the guy <em>living the problem</em> while I build the fix for it.&rdquo;</blockquote>
+  <p class="story">My job is pulling tools and material, hauling them to the site, and putting them away after &mdash; and I was tired of not knowing where things were. Barcodes want a perfect process nobody on a real job has time for. Spreadsheets are wrong by lunch. So I built the thing I actually wanted: <b>tracking that lives on the phone already in my pocket</b>, fast enough to use between loading the truck and pulling out of the yard. Every feature gets the same test: does it survive a real job site, or does it just look good in a demo?</p>
+  <div class="who">
+    <span class="sig" aria-hidden="true">TK</span>
+    <span><b>Thomas K.</b>Founder &mdash; still loading trucks. <a href="/journal/">Follow the build journal &rarr;</a></span>
+  </div>
+</div></section>
+
+<!-- ============ 04 IN THE FIELD ============ -->
+<section><div class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">
+      <svg class="tally" viewBox="0 0 22 14" aria-hidden="true"><rect x="0" y="0" width="2.5" height="14"/><rect x="5" y="0" width="2.5" height="14"/><rect x="10" y="0" width="2.5" height="14"/><rect x="15" y="0" width="2.5" height="14"/><line x1="20.5" y1="1" x2="1" y2="13"/></svg>
+      04 &middot; In the field
+    </span>
+    <h2>What the crew sees</h2>
+    <p class="sub">Big type, big tap targets, high contrast. Built to work with gloves on and sun on the screen.</p>
   </div>
   <div class="shots">
     <!-- 1. ITEM DETAIL -->
@@ -278,40 +246,40 @@
           </div>
           <div class="detail-body">
             <div class="dn">DeWalt Impact Driver</div>
-            <span class="pill stock"><span class="dot g" style="box-shadow:none"></span>In stock</span>
+            <span class="pill">IN STOCK</span>
             <div class="kv"><span class="k">Location</span><span class="v">Truck 2</span></div>
             <div class="kv"><span class="k">Last moved</span><span class="v">2 days ago</span></div>
             <div class="kv"><span class="k">Category</span><span class="v">Power tools</span></div>
           </div>
         </div>
       </div>
-      <p class="cap"><b>Every item, with a photo and a location</b>, so nobody guesses which drill.</p>
+      <p class="cap"><b>Every item, with a photo and a location</b> &mdash; so nobody guesses which drill.</p>
     </div>
     <!-- 2. LOCATIONS -->
     <div class="shot">
       <div class="phone" role="img" aria-label="App mockup: locations list with sample counts">
         <div class="screen">
           <div class="app-bar"><span class="co" style="margin-left:2px">Locations</span></div>
-          <div style="padding-top:4px">
-            <div class="loc-row"><div class="li"><svg viewBox="0 0 24 24" fill="none" stroke="#1F3A5F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10l9-6 9 6v9a1 1 0 01-1 1H4a1 1 0 01-1-1z"/><path d="M9 20v-6h6v6"/></svg></div><span class="ln">Warehouse</span><span class="lc">128</span></div>
+          <div style="padding-top:12px">
+            <div class="loc-row"><div class="li"><svg viewBox="0 0 24 24" fill="none" stroke="#1F3A5F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10l9-6 9 6v9a1 1 0 01-1 1H4a1 1 0 01-1-1z"/><path d="M9 20v-6h6v6"/></svg></div><span class="ln">Shop</span><span class="lc">128</span></div>
             <div class="loc-row"><div class="li"><svg viewBox="0 0 24 24" fill="none" stroke="#1F3A5F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h11v8H3zM14 10h4l3 3v2h-7z"/><circle cx="7" cy="17" r="1.6"/><circle cx="17.5" cy="17" r="1.6"/></svg></div><span class="ln">Truck 2</span><span class="lc">34</span></div>
             <div class="loc-row"><div class="li"><svg viewBox="0 0 24 24" fill="none" stroke="#1F3A5F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.6-7-11a7 7 0 0114 0c0 5.4-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div><span class="ln">Job: Oak St.</span><span class="lc">19</span></div>
             <div class="loc-row"><div class="li"><svg viewBox="0 0 24 24" fill="none" stroke="#1F3A5F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V8l8-4 8 4v12"/><path d="M4 12h16M9 20v-8h6v8"/></svg></div><span class="ln">Yard</span><span class="lc">52</span></div>
           </div>
         </div>
       </div>
-      <p class="cap"><b>See what's where</b>: warehouse, yard, truck, or job site.</p>
+      <p class="cap"><b>See what's where</b>: shop, yard, truck, or job site &mdash; down to the shelf.</p>
     </div>
     <!-- 3. ADD / MOVE -->
     <div class="shot">
-      <div class="phone" role="img" aria-label="App mockup: add or move a tool form with sample data">
+      <div class="phone" role="img" aria-label="App mockup: add a tool form with sample data">
         <div class="screen">
           <div class="app-bar"><span class="co" style="margin-left:2px">Add a tool</span></div>
           <div class="form-wrap">
             <div class="fld"><label>Tool name</label><div class="input">Makita Circular Saw</div></div>
             <div class="fld"><label>Location</label>
               <div class="loc-pick">
-                <span class="o">Warehouse</span><span class="o sel">Truck 2</span><span class="o">Oak St.</span><span class="o">Yard</span>
+                <span class="o">Shop</span><span class="o sel">Truck 2</span><span class="o">Oak St.</span><span class="o">Yard</span>
               </div>
             </div>
             <div class="fld"><label>Photo</label>
@@ -321,26 +289,28 @@
           </div>
         </div>
       </div>
-      <p class="cap"><b>Add a tool in seconds.</b> No tags, no scanner.</p>
+      <p class="cap"><b>Add a tool in seconds.</b> No tags, no scanner, no training.</p>
     </div>
   </div>
-  <div style="text-align:center"><span class="sample-tag"><span class="d"></span>Sample data shown. Illustrative mockups, not real customer data.</span></div>
+  <div style="text-align:center;margin-top:44px"><span class="sample-tag"><span class="d"></span>Sample data shown &mdash; illustrative mockups, not real customer data.</span></div>
 </div></section>
 
-<!-- ============ DASHBOARD ON THE DESK (companion) ============ -->
-<!-- NOTE: phone stays the hero. This is the manager/owner's big-screen COMPANION view.
-     The dashboard IS live; there are no customers yet, so keep language to "here's the
-     manager's view" and NEVER imply usage/traction. All figures are sample data. -->
-<section class="desk"><div class="wrap">
+<!-- ============ 05 ON THE DESK ============ -->
+<!-- NOTE: phone stays the hero. This is the owner/manager's big-screen companion view.
+     The dashboard IS live; there are no public customers yet, so keep language to
+     "here's the manager's view" and NEVER imply usage/traction. All figures are sample data. -->
+<section class="desk band-paper2"><div class="wrap">
   <div class="desk-copy">
-    <div class="sec-head">
-      <span class="eyebrow">A dashboard on the desk</span>
+    <div class="sec-head" style="margin-bottom:0">
+      <span class="eyebrow">
+        <svg class="tally" viewBox="0 0 22 14" aria-hidden="true"><rect x="0" y="0" width="2.5" height="14"/><rect x="5" y="0" width="2.5" height="14"/><rect x="10" y="0" width="2.5" height="14"/><rect x="15" y="0" width="2.5" height="14"/><line x1="20.5" y1="1" x2="1" y2="13"/></svg>
+        05 &middot; On the desk
+      </span>
       <h2>A phone in the field, a dashboard on the desk</h2>
-      <p class="sub">The phone does the day-to-day out on the job. The web dashboard is the big-screen view for owners and managers: see inventory across every location, build the pull lists for tomorrow's jobs, and set who on the crew can see and do what. The desk companion to the phone in the field.</p>
-      <span class="keyline"></span>
+      <p class="sub">The phone does the day-to-day out on the job. The web dashboard is the owner's big-screen view: the whole operation, one look.</p>
     </div>
     <ul class="feat-list">
-      <li><strong>Cross-location inventory at a glance.</strong> Warehouse, yard, trucks, and every job site on one screen.</li>
+      <li><strong>Cross-location inventory at a glance.</strong> Shop, yard, trucks, and every job site on one screen.</li>
       <li><strong>Build and assign pull lists.</strong> Line up what each crew needs before they roll out.</li>
       <li><strong>Manage crew access and roles.</strong> Decide who can view, who can edit, and who can move gear.</li>
       <li><strong>Your company's data, private and separate.</strong> Each company's inventory is walled off from every other.</li>
@@ -350,13 +320,11 @@
   <div class="dash-slot">
     <!-- ============================================================
          SWAPPABLE SCREENSHOT SLOT
-         Drop a REAL dashboard screenshot in here later. To swap:
-         replace everything between <div class="browser"> ... </div>
-         (or just the inner <div class="dash"> ... </div>) with:
+         Drop a REAL dashboard screenshot in later: replace the inner
+         <div class="dash"> ... </div> with
              <img src="/assets/dashboard-screenshot.png"
-                  alt="Nail & Tally web dashboard" style="border-radius:10px">
+                  alt="Nail & Tally web dashboard" style="border-radius:6px">
          Keep the outer .browser frame + the sample-data tag below.
-         The mockup below is illustrative only, not real customer data.
          ============================================================ -->
     <div class="browser" role="img" aria-label="Web dashboard mockup: cross-location inventory and a pull list, with sample data">
       <div class="bar">
@@ -364,7 +332,6 @@
         <span class="url">app.nailandtally.com</span>
       </div>
       <div class="dash">
-        <!-- sidebar nav -->
         <div class="side">
           <div class="brandline">
             <svg viewBox="0 0 240 240" aria-hidden="true">
@@ -391,29 +358,28 @@
             <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0112 0M16 6a3 3 0 010 6M21 20a6 6 0 00-4-5.6"/></svg>Crew &amp; roles</li>
           </ul>
         </div>
-        <!-- main panel -->
         <div class="main">
           <div class="h">
             <span class="t">Inventory overview</span>
-            <span class="co">Widgetworks Contracting (Sample)</span>
+            <span class="co">WIDGETWORKS (SAMPLE)</span>
           </div>
           <div class="tiles">
-            <div class="tile"><div class="n">Warehouse</div><div class="c">128<small>items</small></div></div>
-            <div class="tile"><div class="n">Yard</div><div class="c">52<small>items</small></div></div>
-            <div class="tile"><div class="n">Truck 2</div><div class="c">34<small>items</small></div></div>
-            <div class="tile"><div class="n">Oak St.</div><div class="c">19<small>items</small></div></div>
+            <div class="tile"><div class="n">Shop</div><div class="c">128<small>ITEMS</small></div></div>
+            <div class="tile"><div class="n">Yard</div><div class="c">52<small>ITEMS</small></div></div>
+            <div class="tile"><div class="n">Truck 2</div><div class="c">34<small>ITEMS</small></div></div>
+            <div class="tile"><div class="n">Oak St.</div><div class="c">19<small>ITEMS</small></div></div>
           </div>
           <div class="cols">
             <div class="panel">
               <div class="ph">Recent items</div>
-              <div class="trow"><span class="nm">DeWalt Impact Driver</span><span class="badge-loc ok">Truck 2</span></div>
-              <div class="trow"><span class="nm">Milwaukee Hammer Drill</span><span class="badge-loc ok">Warehouse</span></div>
-              <div class="trow"><span class="nm">Hilti Demo Hammer</span><span class="badge-loc miss">Missing</span></div>
-              <div class="trow"><span class="nm">3/4" Copper Fittings</span><span class="badge-loc low">Low</span></div>
+              <div class="trow"><span class="nm">DeWalt Impact Driver</span><span class="badge-loc ok">TRUCK 2</span></div>
+              <div class="trow"><span class="nm">Milwaukee Hammer Drill</span><span class="badge-loc ok">SHOP</span></div>
+              <div class="trow"><span class="nm">Hilti Demo Hammer</span><span class="badge-loc miss">MISSING</span></div>
+              <div class="trow"><span class="nm">3/4" Copper Fittings</span><span class="badge-loc low">LOW</span></div>
             </div>
             <div class="panel pull">
               <div class="pt">Pull list: Oak St.</div>
-              <div class="pd">For tomorrow's crew</div>
+              <div class="pd">FOR TOMORROW'S CREW</div>
               <div class="pi done"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4L19 7"/></svg></span><span>Rotary laser</span></div>
               <div class="pi"><span class="ck"></span><span>Impact driver</span></div>
               <div class="pi"><span class="ck"></span><span>Pipe threader</span></div>
@@ -423,162 +389,133 @@
         </div>
       </div>
     </div>
-    <div class="sample-wrap"><span class="sample-tag"><span class="d"></span>Sample data shown. Illustrative mockups, not real customer data.</span></div>
+    <div style="margin-top:20px"><span class="sample-tag"><span class="d"></span>Sample data shown &mdash; illustrative mockup, not real customer data.</span></div>
   </div>
 </div></section>
 
-<!-- ============ WHO IT'S FOR ============ -->
-<section class="navy-band"><div class="wrap">
+<!-- ============ 06 WHO IT'S FOR ============ -->
+<section class="band-navy on-dark"><div class="wrap">
   <div class="sec-head">
-    <span class="eyebrow">Who it's for</span>
-    <h2>Made for the trades</h2>
-    <p class="sub">For owners and crews who are tired of the end-of-day "where's the impact driver" scramble.</p>
-    <span class="keyline"></span>
+    <span class="eyebrow light">
+      <svg class="tally" viewBox="0 0 22 14" aria-hidden="true"><rect x="0" y="0" width="2.5" height="14"/><rect x="5" y="0" width="2.5" height="14"/><rect x="10" y="0" width="2.5" height="14"/><rect x="15" y="0" width="2.5" height="14"/><line x1="20.5" y1="1" x2="1" y2="13"/></svg>
+      06 &middot; Who it's for
+    </span>
+    <h2>Shops running crews across job sites</h2>
+    <p class="sub">If your gear lives on more than one truck and more than one site, this was built for your exact headache.</p>
+  </div>
+  <div class="cards four">
+    <div class="card">
+      <div class="icon-tile">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#E9EBEE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 16a9 9 0 0118 0"/><path d="M2 16h20v2H2z"/><path d="M10 7a2 2 0 014 0v2h-4z"/></svg>
+      </div>
+      <h3>Construction</h3>
+      <p>Crews running tools across multiple active sites at once.</p>
+    </div>
+    <div class="card">
+      <div class="icon-tile">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#E9EBEE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M12 10c-1-4 1-6 3-6 0 3-1 5-3 6M14 12c4-1 6 1 6 3-3 0-5-1-6-3M12 14c1 4-1 6-3 6 0-3 1-5 3-6M10 12c-4 1-6-1-6-3 3 0 5 1 6 3"/></svg>
+      </div>
+      <h3>HVAC</h3>
+      <p>Gear moving between the shop, the truck, and the customer all day.</p>
+    </div>
+    <div class="card">
+      <div class="icon-tile">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#E9EBEE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7a4 4 0 10-5 5l-6 6 2 2 6-6a4 4 0 003-7z"/><path d="M14 4l3-1 1 3-3 1z"/></svg>
+      </div>
+      <h3>Plumbing</h3>
+      <p>Crews who need to know what's on which van before they roll.</p>
+    </div>
+    <div class="card">
+      <div class="icon-tile">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#E9EBEE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4l6 6-9 9H5v-6z"/><path d="M12 6l6 6"/><path d="M5 19l-2 2"/></svg>
+      </div>
+      <h3>Carpentry</h3>
+      <p>Shops where the good tools have a habit of wandering.</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- ============ 07 STRAIGHT ANSWERS (roadmap + pricing) ============ -->
+<section><div class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">
+      <svg class="tally" viewBox="0 0 22 14" aria-hidden="true"><rect x="0" y="0" width="2.5" height="14"/><rect x="5" y="0" width="2.5" height="14"/><rect x="10" y="0" width="2.5" height="14"/><rect x="15" y="0" width="2.5" height="14"/><line x1="20.5" y1="1" x2="1" y2="13"/></svg>
+      07 &middot; Straight answers
+    </span>
+    <h2>What's real today, what's coming</h2>
+    <p class="sub">We'd rather tell you what's coming than pretend it's already here. The whole build is public.</p>
   </div>
   <div class="cards">
     <div class="card">
-      <div class="icon-tile navy">
-        <!-- hard hat -->
-        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 16a9 9 0 0118 0"/><path d="M2 16h20v2H2z"/><path d="M10 7a2 2 0 014 0v2h-4z"/></svg>
+      <div class="icon-tile green">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#15512F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
       </div>
-      <h3>Construction crews</h3>
-      <p>Running tools across multiple active sites.</p>
+      <h3>Working now</h3>
+      <p>The field app and the manager's dashboard: items with photos, locations down to the shelf, transfers, and pull lists from a file. <a class="txt-link" href="/changelog/">See the changelog</a></p>
     </div>
     <div class="card">
-      <div class="icon-tile navy">
-        <!-- HVAC fan -->
-        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M12 10c-1-4 1-6 3-6 0 3-1 5-3 6M14 12c4-1 6 1 6 3-3 0-5-1-6-3M12 14c1 4-1 6-3 6 0-3 1-5 3-6M10 12c-4 1-6-1-6-3 3 0 5 1 6 3"/></svg>
+      <div class="icon-tile">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#1F3A5F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8a2 2 0 012-2h2l1.5-2h7L18 6h2a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><circle cx="12" cy="12.5" r="3.5"/></svg>
       </div>
-      <h3>HVAC shops</h3>
-      <p>Moving gear between the warehouse, the truck, and the customer.</p>
+      <h3>In development</h3>
+      <p>Photo-assisted logging &mdash; point the phone and let the app help identify and count what it sees. Native iOS &amp; Android apps in the stores. <a class="txt-link" href="/roadmap/">Read the roadmap</a></p>
     </div>
     <div class="card">
-      <div class="icon-tile navy">
-        <!-- pipe wrench -->
-        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7a4 4 0 10-5 5l-6 6 2 2 6-6a4 4 0 003-7z"/><path d="M14 4l3-1 1 3-3 1z"/></svg>
+      <div class="icon-tile">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#1F3A5F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12V5a2 2 0 012-2h7l8 8-9 9z"/><circle cx="8" cy="8" r="1.6"/></svg>
       </div>
-      <h3>Plumbing crews</h3>
-      <p>Who need to know what's on which van before they roll.</p>
-    </div>
-    <div class="card">
-      <div class="icon-tile navy">
-        <!-- price tag -->
-        <svg viewBox="0 0 24 24" fill="none" stroke="#2E8A52" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12V5a2 2 0 012-2h7l8 8-9 9z"/><circle cx="8" cy="8" r="1.6"/></svg>
-      </div>
-      <h3>Simple, honest pricing</h3>
-      <p>Coming soon.</p>
-    </div>
-  </div>
-</div></section>
-
-<!-- ============ HOW IT WORKS ============ -->
-<section class="alt"><div class="wrap">
-  <div class="sec-head">
-    <span class="eyebrow">How it works</span>
-    <h2>No tags. No scanners. Just your phone.</h2>
-    <p class="sub">Most tool-tracking systems die the same way: nobody scans the tags. Nail &amp; Tally skips the hardware entirely, so the crew actually keeps it up to date.</p>
-    <span class="keyline"></span>
-  </div>
-  <div class="steps">
-    <div class="step">
-      <div class="top"><span class="n">1</span><span class="si"><svg viewBox="0 0 24 24" fill="none" stroke="#1F3A5F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/><circle cx="12" cy="12" r="9"/></svg></span></div>
-      <h3>Add a tool</h3>
-      <p>Type it in, or pick from the list.</p>
-    </div>
-    <div class="step">
-      <div class="top"><span class="n">2</span><span class="si"><svg viewBox="0 0 24 24" fill="none" stroke="#1F3A5F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8a2 2 0 012-2h2l1.5-2h7L18 6h2a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><circle cx="12" cy="12.5" r="3.5"/></svg></span></div>
-      <h3>Snap a photo</h3>
-      <p>So everyone knows exactly which one.</p>
-    </div>
-    <div class="step">
-      <div class="top"><span class="n">3</span><span class="si"><svg viewBox="0 0 24 24" fill="none" stroke="#1F3A5F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.6-7-11a7 7 0 0114 0c0 5.4-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span></div>
-      <h3>Assign a location</h3>
-      <p>Done. Updating the count takes seconds.</p>
-    </div>
-  </div>
-</div></section>
-
-<!-- ============ ROADMAP ============ -->
-<section class="navy-band"><div class="wrap">
-  <div class="sec-head">
-    <span class="eyebrow">On the roadmap</span>
-    <h2>On the roadmap</h2>
-    <p class="sub">We'd rather tell you what's coming than pretend it's already here. On the build now:</p>
-    <span class="keyline"></span>
-  </div>
-  <div class="road">
-    <div class="road-item">
-      <div class="ri-icon" style="background:#fff"><svg viewBox="0 0 24 24" fill="none" stroke="#1F3A5F" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5A1.5 1.5 0 014.5 7h2L8 5h5l1.5 2h2A1.5 1.5 0 0118 8.5V17a1.5 1.5 0 01-1.5 1.5h-12A1.5 1.5 0 013 17z"/><circle cx="10.5" cy="12.5" r="3.2"/><path d="M19.5 3.2l.7 1.7 1.7.7-1.7.7-.7 1.7-.7-1.7-1.7-.7 1.7-.7z" fill="#15512F" stroke="#15512F" stroke-width="1"/></svg></div>
-      <div>
-        <h3>Photo-assisted logging</h3>
-        <p>Point your phone and let the app help identify and count what it sees.</p>
-        <span class="tag">In development</span>
-      </div>
-    </div>
-    <div class="road-item">
-      <div class="ri-icon" style="background:#fff"><svg viewBox="0 0 24 24" fill="none" stroke="#1F3A5F" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="6.5" y="2.5" width="11" height="19" rx="2.6"/><path d="M6.5 6.5h11M6.5 17.5h11" stroke-width="1.5"/><path d="M10.4 19.6h3.2" stroke="#15512F"/><rect x="9.2" y="8.4" width="2.6" height="2.6" rx=".7"/><rect x="12.7" y="8.4" width="2.6" height="2.6" rx=".7"/><rect x="9.2" y="11.9" width="2.6" height="2.6" rx=".7"/><rect x="12.7" y="11.9" width="2.6" height="2.6" rx=".7"/></svg></div>
-      <div>
-        <h3>iOS &amp; Android apps</h3>
-        <p>Native apps in the App Store and Google Play.</p>
-        <span class="tag soon">Coming soon</span>
-      </div>
-    </div>
-  </div>
-  <!-- Trust strip -->
-  <div class="trust-strip">
-    <div class="ts-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#2E8A52" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
-    <div>
-      <h3>Your data stays yours</h3>
-      <p>Each company's inventory is private and separated. Your data stays yours.</p>
+      <h3>Pricing</h3>
+      <p>Coming soon &mdash; simple and honest when it lands. Pilot crews run free, and pilots are open now.</p>
     </div>
   </div>
 </div></section>
 
 <!-- ============ FINAL CTA ============ -->
-<section class="charcoal-band cta-final"><div class="wrap">
-  <span class="eyebrow light">Want in early?</span>
-  <h2>Want in early?</h2>
-  <p class="sub">We're onboarding a small group of pilot crews now. Get in before launch, or get a note when we open up.</p>
-  <a class="btn lg" href="mailto:info@nailandtally.com?subject=Beta%20access%20request">Request beta access</a>
-  <span class="email">Or email us: <a href="mailto:info@nailandtally.com">info@nailandtally.com</a></span>
+<section class="band-charcoal cta-final on-dark"><div class="wrap">
+  <span class="eyebrow light">
+    <svg class="tally" viewBox="0 0 22 14" aria-hidden="true"><rect x="0" y="0" width="2.5" height="14"/><rect x="5" y="0" width="2.5" height="14"/><rect x="10" y="0" width="2.5" height="14"/><rect x="15" y="0" width="2.5" height="14"/><line x1="20.5" y1="1" x2="1" y2="13"/></svg>
+    Put it on a truck
+  </span>
+  <h2>Run a free pilot with your crew</h2>
+  <p class="sub">We're onboarding a small group of pilot crews now. One email, no forms, no sales call &mdash; tell us how many trucks and sites you're running and we'll set you up.</p>
+  <a class="btn lg" href="mailto:info@nailandtally.com?subject=Free%20pilot%20request">Start a free pilot</a>
+  <span class="email">Or just write us: <a href="mailto:info@nailandtally.com">info@nailandtally.com</a></span>
 </div></section>
 
 <!-- ============ FOOTER ============ -->
 <footer class="site"><div class="wrap">
-  <div class="f-top">
-    <svg viewBox="0 0 240 240" aria-hidden="true">
-      <polygon points="16,120 68,30 172,30 224,120 172,210 68,210" fill="none" stroke="#E9EBEE" stroke-width="9"/>
-      <g fill="#2E8A52">
-        <rect x="86" y="86" width="7" height="68" rx="3.5"/>
-        <rect x="100" y="86" width="7" height="68" rx="3.5"/>
-        <rect x="114" y="86" width="7" height="68" rx="3.5"/>
-        <rect x="128" y="86" width="7" height="68" rx="3.5"/>
-      </g>
-      <g transform="rotate(48 120 120)">
-        <rect x="103" y="58" width="34" height="13" rx="2" fill="#F5F5F0"/>
-        <path d="M111,71 L129,71 L125,170 L115,170 Z" fill="#F5F5F0"/>
-        <path d="M115,170 L125,170 L120,185 Z" fill="#F5F5F0"/>
-      </g>
-    </svg>
-    <span class="f-brand">Nail <span class="amp">&amp;</span> Tally<span class="tm">&trade;</span></span>
+  <div class="f-grid">
+    <div>
+      <div class="f-top">
+        <svg viewBox="0 0 240 240" aria-hidden="true">
+          <polygon points="16,120 68,30 172,30 224,120 172,210 68,210" fill="none" stroke="#E9EBEE" stroke-width="9"/>
+          <g fill="#2E8A52">
+            <rect x="86" y="86" width="7" height="68" rx="3.5"/>
+            <rect x="100" y="86" width="7" height="68" rx="3.5"/>
+            <rect x="114" y="86" width="7" height="68" rx="3.5"/>
+            <rect x="128" y="86" width="7" height="68" rx="3.5"/>
+          </g>
+          <g transform="rotate(48 120 120)">
+            <rect x="103" y="58" width="34" height="13" rx="2" fill="#F5F5F0"/>
+            <path d="M111,71 L129,71 L125,170 L115,170 Z" fill="#F5F5F0"/>
+            <path d="M115,170 L125,170 L120,185 Z" fill="#F5F5F0"/>
+          </g>
+        </svg>
+        <span class="f-brand">Nail <span class="amp">&amp;</span> Tally<span class="tm">&trade;</span></span>
+      </div>
+      <p class="tagline">Tool &amp; material inventory for construction, HVAC, plumbing, and carpentry crews. No barcodes, no tags, just your phone.</p>
+    </div>
+    <div class="links">
+      <a href="/about/">About</a>
+      <a href="/journal/">Journal</a>
+      <a href="/roadmap/">Roadmap</a>
+      <a href="/changelog/">Changelog</a>
+      <a href="/privacy">Privacy Policy</a>
+      <a href="/terms">Terms of Service</a>
+      <a href="mailto:info@nailandtally.com">info@nailandtally.com</a>
+    </div>
   </div>
-  <p class="tagline">Tool &amp; material inventory for construction, HVAC, and plumbing crews. No barcodes, no tags, just your phone.</p>
-  <div class="legal">&copy; 2026 Nail and Tally LLC. All rights reserved.</div>
-  <div class="links">
-    <a href="/privacy">Privacy Policy</a>
-    <span class="sep">·</span>
-    <a href="/terms">Terms of Service</a>
-    <span class="sep">·</span>
-    <a href="/about/">About</a>
-    <span class="sep">·</span>
-    <a href="/journal/">Journal</a>
-    <span class="sep">·</span>
-    <a href="/roadmap/">Roadmap</a>
-    <span class="sep">·</span>
-    <a href="/changelog/">Changelog</a>
-    <span class="sep">·</span>
-    <a href="mailto:info@nailandtally.com">info@nailandtally.com</a>
-  </div>
+  <div class="legal">&copy; 2026 NAIL AND TALLY LLC. ALL RIGHTS RESERVED.</div>
 </div></footer>
 
 </body></html>
