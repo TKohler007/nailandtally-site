@@ -39,7 +39,7 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h4a2 2 0 012 2v14a2 2 0 01-2 2h-4"/><path d="M10 17l5-5-5-5M15 12H3"/></svg>
       Log in
     </a>
-    <a class="btn head" href="mailto:info@nailandtally.com?subject=Free%20pilot%20request"><span class="cta-full">Start a free pilot</span><span class="cta-short">Free pilot</span></a>
+    <a class="btn head" href="/#pilot"><span class="cta-full">Start a free pilot</span><span class="cta-short">Free pilot</span></a>
   </nav>
 </div></header>
 
@@ -53,7 +53,7 @@
     <h1>Know where<br>every tool is.</h1>
     <p class="lead">Across every truck, job site, and shop &mdash; from the phone in your pocket. <b>No barcodes, no tags, no scanners.</b> Anyone logs a tool when it moves; everyone sees where it is.</p>
     <div class="cta-row">
-      <a class="btn lg" href="mailto:info@nailandtally.com?subject=Free%20pilot%20request">Start a free pilot</a>
+      <a class="btn lg" href="/#pilot">Start a free pilot</a>
       <a class="btn-ghost" href="#how">See how it works
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
       </a>
@@ -470,17 +470,110 @@
   </div>
 </div></section>
 
-<!-- ============ FINAL CTA ============ -->
-<section class="band-charcoal cta-final on-dark"><div class="wrap">
+<!-- ============ FINAL CTA + PILOT FORM ============ -->
+<!-- Posts to the pilot-request edge function (Supabase). Honeypot field
+     "website" is hidden from people; the function drops anything that fills it.
+     Mailto stays as the fallback underneath. -->
+<section id="pilot" class="band-charcoal cta-final on-dark"><div class="wrap">
   <span class="eyebrow light">
     <svg class="tally" viewBox="0 0 22 14" aria-hidden="true"><rect x="0" y="0" width="2.5" height="14"/><rect x="5" y="0" width="2.5" height="14"/><rect x="10" y="0" width="2.5" height="14"/><rect x="15" y="0" width="2.5" height="14"/><line x1="20.5" y1="1" x2="1" y2="13"/></svg>
     Put it on a truck
   </span>
   <h2>Run a free pilot with your crew</h2>
-  <p class="sub">We're onboarding a small group of pilot crews now. One email, no forms, no sales call &mdash; tell us how many trucks and sites you're running and we'll set you up.</p>
-  <a class="btn lg" href="mailto:info@nailandtally.com?subject=Free%20pilot%20request">Start a free pilot</a>
-  <span class="email">Or just write us: <a href="mailto:info@nailandtally.com">info@nailandtally.com</a></span>
+  <p class="sub">We're onboarding a small group of pilot crews now. Tell us who you are and roughly what you're running &mdash; no sales call, we'll just get back to you.</p>
+
+  <form class="pilot-form" id="pilot-form" novalidate>
+    <div class="pf-grid">
+      <div class="pf-field">
+        <label for="pf-name">Your name</label>
+        <input id="pf-name" name="name" type="text" required autocomplete="name" placeholder="First and last">
+      </div>
+      <div class="pf-field">
+        <label for="pf-company">Company <span class="opt">(optional)</span></label>
+        <input id="pf-company" name="company" type="text" autocomplete="organization" placeholder="Shop or company name">
+      </div>
+      <div class="pf-field">
+        <label for="pf-email">Email</label>
+        <input id="pf-email" name="email" type="email" required autocomplete="email" placeholder="you@company.com">
+      </div>
+      <div class="pf-field">
+        <label for="pf-phone">Phone <span class="opt">(optional)</span></label>
+        <input id="pf-phone" name="phone" type="tel" autocomplete="tel" placeholder="If you'd rather talk">
+      </div>
+      <div class="pf-field wide">
+        <label for="pf-crew">Trucks &amp; crew <span class="opt">(optional)</span></label>
+        <input id="pf-crew" name="crew_size" type="text" placeholder="e.g. 3 trucks, 2 active job sites, 8 guys">
+      </div>
+      <div class="pf-field wide">
+        <label for="pf-message">Anything else <span class="opt">(optional)</span></label>
+        <textarea id="pf-message" name="message" placeholder="What's the tool headache you're trying to kill?"></textarea>
+      </div>
+      <!-- honeypot: real people never see this field -->
+      <div class="pf-hp" aria-hidden="true">
+        <label for="pf-website">Website</label>
+        <input id="pf-website" name="website" type="text" tabindex="-1" autocomplete="off">
+      </div>
+    </div>
+    <div class="pf-actions">
+      <button type="submit" class="btn lg" id="pf-submit">Start a free pilot</button>
+      <span class="pf-note">Prefer email? <a class="txt-link" href="mailto:info@nailandtally.com">info@nailandtally.com</a></span>
+    </div>
+    <p class="pf-msg" id="pf-msg" role="status"></p>
+  </form>
 </div></section>
+
+<script>
+(function () {
+  var form = document.getElementById('pilot-form');
+  if (!form) return;
+  var btn = document.getElementById('pf-submit');
+  var msg = document.getElementById('pf-msg');
+  var ENDPOINT = 'https://eruvjbegoqbawopscgmg.supabase.co/functions/v1/pilot-request';
+
+  function show(kind, text) {
+    msg.className = 'pf-msg ' + kind;
+    msg.textContent = text;
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var name = form.name.value.trim();
+    var email = form.email.value.trim();
+    if (!name) { show('err', 'Give us a name so we know who to write back to.'); return; }
+    if (!email || email.indexOf('@') < 1) { show('err', 'That email doesn’t look right — double-check it.'); return; }
+
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+    fetch(ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: name,
+        company: form.company.value.trim(),
+        email: email,
+        phone: form.phone.value.trim(),
+        crew_size: form.crew_size.value.trim(),
+        message: form.message.value.trim(),
+        website: form.website.value
+      })
+    }).then(function (r) { return r.json().catch(function () { return {}; }); })
+      .then(function (data) {
+        if (data && data.ok) {
+          form.querySelector('.pf-grid').style.display = 'none';
+          btn.style.display = 'none';
+          show('ok', 'Got it — we’ll get back to you inside a day or two. Talk soon.');
+        } else {
+          throw new Error('bad response');
+        }
+      })
+      .catch(function () {
+        btn.disabled = false;
+        btn.textContent = 'Start a free pilot';
+        show('err', 'Something went wrong on our end. Email us instead: info@nailandtally.com — sorry about that.');
+      });
+  });
+})();
+</script>
 
 <!-- ============ FOOTER ============ -->
 <footer class="site"><div class="wrap">
